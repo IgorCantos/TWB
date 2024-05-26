@@ -1,17 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 
-import { UserView } from 'src/sections/user/view';
+import { TransactionsView } from 'src/sections/transactions/view';
 
 // ----------------------------------------------------------------------
 
-export default function UserPage() {
+export default function TransactionsPage() {
   return (
     <>
       <Helmet>
         <title> Transações | TWB </title>
       </Helmet>
 
-      <UserView />
+      <TransactionsView />
     </>
   );
 }

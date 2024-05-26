@@ -34,19 +34,19 @@ const navConfig = [
   },
   {
     title: 'Metas financeiras',
-    path: '/blog',
+    path: '/404',
     icon: icon('ic_blog'),
   },
   {
     title: 'Projeções e análises',
-    path: '/login',
+    path: '/404',
     icon: icon('ic_analytics'),
   },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
-  },
+  // {
+  //   title: 'Not found',
+  //   path: '/404',
+  //   icon: icon('ic_disabled'),
+  // },
 ];
 
 export default navConfig;

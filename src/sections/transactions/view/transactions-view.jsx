@@ -15,16 +15,19 @@ import { users } from 'src/_mock/user';
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 
+import { applyBrlMask } from 'src/utils/format-number';
+
 import TableNoData from '../table-no-data';
 import UserTableRow from '../user-table-row';
 import UserTableHead from '../user-table-head';
 import TableEmptyRows from '../table-empty-rows';
 import UserTableToolbar from '../user-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
+import BankData from '../bank-data';
 
 // ----------------------------------------------------------------------
 
-export default function UserPage() {
+export default function TransactionsPage() {
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -94,6 +97,11 @@ export default function UserPage() {
 
   const notFound = !dataFiltered.length && !!filterName;
 
+
+  // TODO: Comes from backend
+  const totalSantander = applyBrlMask(dataFiltered.filter(data => data.bankName === 'Santander').reduce((a, b) => a + Number(b.totalAccountAmount), 0));
+  const totalItau = applyBrlMask(dataFiltered.filter(data => data.bankName === 'Itaú').reduce((a, b) => a + Number(b.totalAccountAmount), 0));
+
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
@@ -103,6 +111,11 @@ export default function UserPage() {
           Cadastrar transação
         </Button>
       </Stack>
+
+      <Stack direction="row" alignItems="center" justifyContent="flex-start" mb={5}>
+        <BankData bankName="Santander" bankLogoUrl='/assets/images/avatars/avatar_1.jpg' totalInputs={totalSantander} totalOutputs={totalSantander} />
+        <BankData bankName="Itaú" bankLogoUrl='/assets/images/avatars/avatar_1.jpg' totalInputs={totalItau} totalOutputs={totalItau} />
+      </Stack >
 
       <Card>
         <UserTableToolbar
@@ -170,6 +183,6 @@ export default function UserPage() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>
-    </Container>
+    </Container >
   );
 }

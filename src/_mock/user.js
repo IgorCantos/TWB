@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 
 // ----------------------------------------------------------------------
 
-export const users = [...Array(100)].map((_, index) => ({
+export const users = [...Array(25)].map((_, index) => ({
   id: faker.string.uuid(),
   avatarUrl: `/assets/images/avatars/avatar_${index + 1}.jpg`,
   bankName: sample(['Santander', 'Itaú', 'Nubank']),

@@ -30,6 +30,11 @@ export function fData(number) {
   return result(format, '.0');
 }
 
+export function applyBrlMask(value) {
+  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+
+}
+
 function result(format, key = '.00') {
   const isInteger = format.includes(key);
 
