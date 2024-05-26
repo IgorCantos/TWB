@@ -3,23 +3,13 @@ import { faker } from '@faker-js/faker';
 
 // ----------------------------------------------------------------------
 
-export const users = [...Array(24)].map((_, index) => ({
+export const users = [...Array(100)].map((_, index) => ({
   id: faker.string.uuid(),
   avatarUrl: `/assets/images/avatars/avatar_${index + 1}.jpg`,
-  name: faker.person.fullName(),
-  company: faker.company.name(),
-  isVerified: faker.datatype.boolean(),
-  status: sample(['active', 'banned']),
-  role: sample([
-    'Leader',
-    'Hr Manager',
-    'UI Designer',
-    'UX Designer',
-    'UI/UX Designer',
-    'Project Manager',
-    'Backend Developer',
-    'Full Stack Designer',
-    'Front End Developer',
-    'Full Stack Developer',
-  ]),
+  bankName: sample(['Santander', 'Itaú', 'Nubank']),
+  transactionDate: sample(['13:04:55 - 26/05/2024', '08:26:32 - 25/03/2024']),
+  category: sample(['Alimentação', 'Transporte', 'Viagens', 'Lazer']),
+  type: sample(['Crédito', 'Pix', 'Débito', 'Parcelado']),
+  amount: faker.finance.amount(),
+  totalAccountAmount: faker.finance.amount(),
 }));

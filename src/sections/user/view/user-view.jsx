@@ -35,7 +35,7 @@ export default function UserPage() {
 
   const [filterName, setFilterName] = useState('');
 
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(50);
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -47,7 +47,7 @@ export default function UserPage() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = users.map((n) => n.name);
+      const newSelecteds = users.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -97,10 +97,10 @@ export default function UserPage() {
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Users</Typography>
+        <Typography variant="h4">Minhas transações</Typography>
 
         <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
-          New User
+          Cadastrar transação
         </Button>
       </Stack>
 
@@ -122,11 +122,12 @@ export default function UserPage() {
                 onRequestSort={handleSort}
                 onSelectAllClick={handleSelectAllClick}
                 headLabel={[
-                  { id: 'name', label: 'Name' },
-                  { id: 'company', label: 'Company' },
-                  { id: 'role', label: 'Role' },
-                  { id: 'isVerified', label: 'Verified', align: 'center' },
-                  { id: 'status', label: 'Status' },
+                  { id: 'bankName', label: 'Banco' },
+                  { id: 'transactionDate', label: 'Data da transação' },
+                  { id: 'category', label: 'Categoria' },
+                  { id: 'type', label: 'Tipo', align: 'left' },
+                  { id: 'amount', label: 'Valor (R$)' },
+                  { id: 'totalAccountAmount', label: 'Saldo total (R$)' },
                   { id: '' },
                 ]}
               />
@@ -136,14 +137,15 @@ export default function UserPage() {
                   .map((row) => (
                     <UserTableRow
                       key={row.id}
-                      name={row.name}
-                      role={row.role}
-                      status={row.status}
-                      company={row.company}
                       avatarUrl={row.avatarUrl}
-                      isVerified={row.isVerified}
-                      selected={selected.indexOf(row.name) !== -1}
-                      handleClick={(event) => handleClick(event, row.name)}
+                      bankName={row.bankName}
+                      transactionDate={row.transactionDate}
+                      category={row.category}
+                      type={row.type}
+                      amount={row.amount}
+                      totalAccountAmount={row.totalAccountAmount}
+                      handleClick={(event) => handleClick(event, row.id)}
+                      selected={selected.indexOf(row.id) !== -1}
                     />
                   ))}
 
@@ -164,7 +166,7 @@ export default function UserPage() {
           count={users.length}
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[50, 100, 150]}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>

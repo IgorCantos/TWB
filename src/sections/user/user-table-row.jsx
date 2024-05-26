@@ -18,12 +18,13 @@ import Iconify from 'src/components/iconify';
 
 export default function UserTableRow({
   selected,
-  name,
   avatarUrl,
-  company,
-  role,
-  isVerified,
-  status,
+  bankName,
+  transactionDate,
+  category,
+  type,
+  amount,
+  totalAccountAmount,
   handleClick,
 }) {
   const [open, setOpen] = useState(null);
@@ -45,21 +46,30 @@ export default function UserTableRow({
 
         <TableCell component="th" scope="row" padding="none">
           <Stack direction="row" alignItems="center" spacing={2}>
-            <Avatar alt={name} src={avatarUrl} />
+            <Avatar alt={bankName} src={avatarUrl} />
+
             <Typography variant="subtitle2" noWrap>
-              {name}
+              {bankName}
             </Typography>
           </Stack>
         </TableCell>
 
-        <TableCell>{company}</TableCell>
-
-        <TableCell>{role}</TableCell>
-
-        <TableCell align="center">{isVerified ? 'Yes' : 'No'}</TableCell>
+        <TableCell>{transactionDate}</TableCell>
 
         <TableCell>
-          <Label color={(status === 'banned' && 'error') || 'success'}>{status}</Label>
+          <Label>{category}</Label>
+        </TableCell>
+
+        <TableCell>
+          <Label>{type}</Label>
+        </TableCell>
+
+        <TableCell>
+          {amount}
+        </TableCell>
+
+        <TableCell>
+          {totalAccountAmount}
         </TableCell>
 
         <TableCell align="right">
@@ -81,12 +91,12 @@ export default function UserTableRow({
       >
         <MenuItem onClick={handleCloseMenu}>
           <Iconify icon="eva:edit-fill" sx={{ mr: 2 }} />
-          Edit
+          Editar
         </MenuItem>
 
         <MenuItem onClick={handleCloseMenu} sx={{ color: 'error.main' }}>
           <Iconify icon="eva:trash-2-outline" sx={{ mr: 2 }} />
-          Delete
+          Deletar
         </MenuItem>
       </Popover>
     </>
@@ -95,11 +105,12 @@ export default function UserTableRow({
 
 UserTableRow.propTypes = {
   avatarUrl: PropTypes.any,
-  company: PropTypes.any,
+  transactionDate: PropTypes.any,
   handleClick: PropTypes.func,
-  isVerified: PropTypes.any,
-  name: PropTypes.any,
-  role: PropTypes.any,
+  type: PropTypes.any,
+  bankName: PropTypes.any,
+  category: PropTypes.any,
   selected: PropTypes.any,
-  status: PropTypes.string,
+  amount: PropTypes.string,
+  totalAccountAmount: PropTypes.string,
 };
