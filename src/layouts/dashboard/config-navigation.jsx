@@ -8,29 +8,39 @@ const icon = (name) => (
 
 const navConfig = [
   {
-    title: 'dashboard',
+    title: 'Resumo geral',
     path: '/',
     icon: icon('ic_analytics'),
   },
   {
-    title: 'user',
-    path: '/user',
+    title: 'Transações',
+    path: '/transacoes',
     icon: icon('ic_user'),
   },
   {
-    title: 'product',
+    title: 'Contas',
     path: '/products',
     icon: icon('ic_cart'),
+    children: [
+      {
+        title: 'Gerenciar',
+        path: '/contas/gerenciar',
+      },
+      {
+        title: 'Saldo total',
+        path: '/contas/saldo-total',
+      }
+    ]
   },
   {
-    title: 'blog',
+    title: 'Metas financeiras',
     path: '/blog',
     icon: icon('ic_blog'),
   },
   {
-    title: 'login',
+    title: 'Projeções e análises',
     path: '/login',
-    icon: icon('ic_lock'),
+    icon: icon('ic_analytics'),
   },
   {
     title: 'Not found',

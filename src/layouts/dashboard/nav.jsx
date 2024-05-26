@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -7,8 +7,10 @@ import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import { alpha } from '@mui/material/styles';
+import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
 import ListItemButton from '@mui/material/ListItemButton';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { usePathname } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
@@ -65,7 +67,11 @@ export default function Nav({ openNav, onCloseNav }) {
   const renderMenu = (
     <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
       {navConfig.map((item) => (
-        <NavItem key={item.title} item={item} />
+        item.children ? (
+          <CollapsibleNavItem key={item.title} item={item} />
+        ) : (
+          <NavItem key={item.title} item={item} />
+        )
       ))}
     </Stack>
   );
@@ -162,7 +168,6 @@ Nav.propTypes = {
   onCloseNav: PropTypes.func,
 };
 
-// ----------------------------------------------------------------------
 
 function NavItem({ item }) {
   const pathname = usePathname();
@@ -194,11 +199,61 @@ function NavItem({ item }) {
         {item.icon}
       </Box>
 
-      <Box component="span">{item.title} </Box>
+      <Box component="span">{item.title}</Box>
     </ListItemButton>
   );
 }
 
 NavItem.propTypes = {
+  item: PropTypes.object,
+};
+
+
+function CollapsibleNavItem({ item }) {
+  const [open, setOpen] = useState(false);
+
+  const handleToggle = () => {
+    setOpen(!open);
+  };
+
+  return (
+    <>
+      <ListItemButton
+        onClick={handleToggle}
+        sx={{
+          minHeight: 44,
+          borderRadius: 0.75,
+          typography: 'body2',
+          color: 'text.secondary',
+          textTransform: 'capitalize',
+          fontWeight: 'fontWeightMedium',
+        }}
+      >
+        <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
+          {item.icon}
+        </Box>
+
+        <Box component="span">{item.title}</Box>
+
+        <ExpandMoreIcon
+          sx={{
+            transform: open ? 'rotate(0deg)' : 'rotate(-80deg)',
+            transition: 'transform 0.3s',
+          }}
+        />
+      </ListItemButton>
+
+      <Collapse in={open}>
+        <Stack spacing={0.5} sx={{ pl: 3 }}>
+          {item.children.map((child) => (
+            <NavItem key={child.title} item={child} />
+          ))}
+        </Stack>
+      </Collapse>
+    </>
+  );
+}
+
+CollapsibleNavItem.propTypes = {
   item: PropTypes.object,
 };
