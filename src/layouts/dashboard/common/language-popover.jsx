@@ -1,44 +1,38 @@
-import { useState } from 'react';
-
-import Box from '@mui/material/Box';
-import Popover from '@mui/material/Popover';
-import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
 import { useAppMode } from 'src/contexts/app-mode-context';
 
 // ----------------------------------------------------------------------
 
-const LANGS = [
-  {
-    value: 'en',
-    label: 'English',
-    icon: '/assets/icons/ic_flag_en.svg',
-  },
-  {
-    value: 'de',
-    label: 'German',
-    icon: '/assets/icons/ic_flag_de.svg',
-  },
-  {
-    value: 'fr',
-    label: 'French',
-    icon: '/assets/icons/ic_flag_fr.svg',
-  },
-];
+// const LANGS = [
+//   {
+//     value: 'en',
+//     label: 'English',
+//     icon: '/assets/icons/ic_flag_en.svg',
+//   },
+//   {
+//     value: 'de',
+//     label: 'German',
+//     icon: '/assets/icons/ic_flag_de.svg',
+//   },
+//   {
+//     value: 'fr',
+//     label: 'French',
+//     icon: '/assets/icons/ic_flag_fr.svg',
+//   },
+// ];
 
 // ----------------------------------------------------------------------
 
 export default function LanguagePopover() {
-  const [open, setOpen] = useState(null);
+  // const [open, setOpen] = useState(null);
   const { appMode, setAppMode } = useAppMode();
 
-  const handleOpen = (event) => {
-    setOpen(event.currentTarget);
-  };
+  // const handleOpen = (event) => {
+  //   setOpen(event.currentTarget);
+  // };
 
-  const handleClose = () => {
-    setOpen(null);
-  };
+  // const handleClose = () => {
+  //   setOpen(null);
+  // };
 
   const toggleAppMode = () => {
     setAppMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
@@ -49,7 +43,7 @@ export default function LanguagePopover() {
       <button type='button' onClick={toggleAppMode}>
         Modo: {appMode}
       </button>
-      <IconButton
+      {/* <IconButton
         onClick={handleOpen}
         sx={{
           width: 40,
@@ -89,7 +83,7 @@ export default function LanguagePopover() {
             {option.label}
           </MenuItem>
         ))}
-      </Popover>
+      </Popover> */}
     </>
   );
 }
