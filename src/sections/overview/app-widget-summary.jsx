@@ -28,7 +28,7 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
         </Typography>
 
         {/* TODO: fix color */}
-        <Typography variant="h4" sx={{ color: total.includes('-') > 0 ? 'red' : null }}>{total}</Typography>
+        <Typography variant="h4">{total}</Typography>
 
       </Stack>
     </Card>

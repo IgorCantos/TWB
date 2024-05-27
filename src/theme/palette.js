@@ -122,6 +122,24 @@ export function palette(mode) {
       },
     } : {
       mode: 'dark',
+      // primary: {
+      //   main: '#90caf9', // Cor primária (azul claro)
+      // },
+      // secondary: {
+      //   main: '#f48fb1', // Cor secundária (rosa claro)
+      // },
+      // background: {
+      //   default: '#121212', // Cor de fundo principal
+      //   paper: '#1e1e1e', // Cor de fundo de superfícies (cards, etc)
+      // },
+      // text: {
+      //   primary: '#ffffff', // Cor do texto primário
+      //   secondary: '#b0bec5', // Cor do texto secundário
+      // },
+      background: {
+        default: '#121212', // Cor de fundo principal
+        paper: '#212b36', // Altere esta cor para a cor de fundo desejada para o card
+      },
     })
   };
 }
