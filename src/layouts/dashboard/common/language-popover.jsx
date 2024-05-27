@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Popover from '@mui/material/Popover';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
+import { useAppMode } from 'src/contexts/app-mode-context';
 
 // ----------------------------------------------------------------------
 
@@ -29,6 +30,7 @@ const LANGS = [
 
 export default function LanguagePopover() {
   const [open, setOpen] = useState(null);
+  const { appMode, setAppMode } = useAppMode();
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -38,8 +40,15 @@ export default function LanguagePopover() {
     setOpen(null);
   };
 
+  const toggleAppMode = () => {
+    setAppMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+  };
+
   return (
     <>
+      <button type='button' onClick={toggleAppMode}>
+        Modo: {appMode}
+      </button>
       <IconButton
         onClick={handleOpen}
         sx={{
