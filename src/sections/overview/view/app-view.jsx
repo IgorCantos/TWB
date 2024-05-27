@@ -1,6 +1,17 @@
+import { useState } from 'react'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
-
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import ListItemText from '@mui/material/ListItemText';
+import Select from '@mui/material/Select';
+import Checkbox from '@mui/material/Checkbox';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { applyBrlMask } from 'src/utils/format-number';
 
 import AppCurrentVisits from '../app-current-visits';
@@ -11,9 +22,104 @@ import AppConversionRates from '../app-conversion-rates';
 // ----------------------------------------------------------------------
 
 export default function AppView() {
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+
+  const names = [
+    'Santander',
+    'Itaú',
+  ];
+
+
+  const [personName, setPersonName] = useState([]);
+
+  const handleChange = event => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
+
+
+  const [age, setAge] = useState('');
+
+  const handleChange2 = event => {
+    setAge(event.target.value);
+  };
+
+
   return (
     <Container maxWidth="xl">
 
+      <Grid container spacing={3}>
+        <Grid xs={12} sm={6} md={3}>
+          <FormControl sx={{ width: 250 }}>
+            <InputLabel id="bank-select-label">Meus bancos</InputLabel>
+            <Select
+              labelId="bank-select-label"
+              id="bank-select-checkbox"
+              multiple
+              value={personName}
+              onChange={handleChange}
+              input={<OutlinedInput label="Meus bancos" />}
+              renderValue={(selected) => selected.join(', ')}
+              MenuProps={MenuProps}
+            >
+              {names.map((name) => (
+                <MenuItem key={name} value={name}>
+                  <Checkbox checked={personName.indexOf(name) > -1} />
+                  <img src='/assets/icons/ic_flag_en.svg' alt='oi' />
+                  <ListItemText primary={name} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid xs={12} sm={6} md={3}>
+          <FormControl sx={{ marginLeft: 2, width: 250 }}>
+            <InputLabel id="demo-simple-select-label">Dados de</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={age}
+              label="Dados de"
+              onChange={handleChange2}
+            >
+              <MenuItem value={10}>Extrato de conta</MenuItem>
+              <MenuItem value={20}>Cartões de crédito e débito</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid xs={12} sm={6} md={3}>
+          <LocalizationProvider dateAdapter={AdapterDayjs} >
+            <DemoContainer components={['DatePicker']}>
+              <DatePicker label="Data de ínicio" />
+            </DemoContainer>
+          </LocalizationProvider>
+        </Grid>
+
+        <Grid xs={12} sm={6} md={3}>
+          <LocalizationProvider dateAdapter={AdapterDayjs} >
+            <DemoContainer components={['DatePicker']}>
+              <DatePicker label="Data final" />
+            </DemoContainer>
+          </LocalizationProvider>
+        </Grid>
+
+      </Grid>
 
       <Grid container spacing={3}>
         <Grid xs={12} sm={6} md={3}>
