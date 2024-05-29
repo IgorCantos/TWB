@@ -191,6 +191,11 @@ export default function useChart(options) {
           connectorColors: theme.palette.divider,
         },
       },
+
+      // Area
+      area: {
+        fillTo: 'origin',
+      }
     },
 
     // Responsive
