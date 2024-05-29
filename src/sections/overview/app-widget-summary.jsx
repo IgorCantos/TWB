@@ -38,16 +38,8 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
         show: false,
       },
     },
-    yaxis: {
-      labels: {
-        show: false,
-      },
-    },
     stroke: {
       curve: 'smooth'
-    },
-    grid: {
-      show: false, // Desabilitar as linhas de grade
     },
     tooltip: {
       shared: true,
@@ -76,7 +68,7 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
 
       <Stack spacing={0.5} sx={{
         px: 3,
-        py: 5,
+        pt: 4,
       }}>
         <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
           {title}
