@@ -38,13 +38,13 @@ export default function Nav({ openNav, onCloseNav }) {
 
   const renderMenu = (
     <Stack component="nav" spacing={0.5} sx={{ px: 2 }}>
-      {navConfig.map((item) => (
+      {navConfig.map((item) =>
         item.children ? (
           <CollapsibleNavItem key={item.title} item={item} />
         ) : (
           <NavItem key={item.title} item={item} />
         )
-      ))}
+      )}
     </Stack>
   );
 
@@ -138,7 +138,6 @@ Nav.propTypes = {
   onCloseNav: PropTypes.func,
 };
 
-
 function NavItem({ item }) {
   const pathname = usePathname();
 
@@ -177,7 +176,6 @@ function NavItem({ item }) {
 NavItem.propTypes = {
   item: PropTypes.object,
 };
-
 
 function CollapsibleNavItem({ item }) {
   const [open, setOpen] = useState(false);

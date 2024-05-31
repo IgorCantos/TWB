@@ -49,8 +49,8 @@ export default function NotFoundView() {
           </Typography>
 
           <Typography sx={{ color: 'text.secondary' }}>
-            Eita, não conseguimos encontrar essa página. Talvez você tenha digitado incorretamente a URL? Ser
-            certifique-se de verificar sua ortografia.
+            Eita, não conseguimos encontrar essa página. Talvez você tenha digitado incorretamente a
+            URL? Ser certifique-se de verificar sua ortografia.
           </Typography>
 
           <Box

@@ -104,42 +104,44 @@ const base = {
 export function palette(mode) {
   return {
     ...base,
-    ...(mode === 'light' ? {
-      mode: 'light',
-      text: {
-        primary: grey[800],
-        secondary: grey[600],
-        disabled: grey[500],
-      },
-      background: {
-        paper: '#FFFFFF',
-        default: grey[100],
-        neutral: grey[200],
-      },
-      action: {
-        ...base.action,
-        active: grey[600],
-      },
-    } : {
-      mode: 'dark',
-      // primary: {
-      //   main: '#90caf9', // Cor primária (azul claro)
-      // },
-      // secondary: {
-      //   main: '#f48fb1', // Cor secundária (rosa claro)
-      // },
-      // background: {
-      //   default: '#121212', // Cor de fundo principal
-      //   paper: '#1e1e1e', // Cor de fundo de superfícies (cards, etc)
-      // },
-      // text: {
-      //   primary: '#ffffff', // Cor do texto primário
-      //   secondary: '#b0bec5', // Cor do texto secundário
-      // },
-      background: {
-        default: '#121212', // Cor de fundo principal
-        paper: '#212b36', // Altere esta cor para a cor de fundo desejada para o card
-      },
-    })
+    ...(mode === 'light'
+      ? {
+          mode: 'light',
+          text: {
+            primary: grey[800],
+            secondary: grey[600],
+            disabled: grey[500],
+          },
+          background: {
+            paper: '#FFFFFF',
+            default: grey[100],
+            neutral: grey[200],
+          },
+          action: {
+            ...base.action,
+            active: grey[600],
+          },
+        }
+      : {
+          mode: 'dark',
+          // primary: {
+          //   main: '#90caf9', // Cor primária (azul claro)
+          // },
+          // secondary: {
+          //   main: '#f48fb1', // Cor secundária (rosa claro)
+          // },
+          // background: {
+          //   default: '#121212', // Cor de fundo principal
+          //   paper: '#1e1e1e', // Cor de fundo de superfícies (cards, etc)
+          // },
+          // text: {
+          //   primary: '#ffffff', // Cor do texto primário
+          //   secondary: '#b0bec5', // Cor do texto secundário
+          // },
+          background: {
+            default: '#121212', // Cor de fundo principal
+            paper: '#212b36', // Altere esta cor para a cor de fundo desejada para o card
+          },
+        }),
   };
 }

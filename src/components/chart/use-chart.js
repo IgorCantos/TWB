@@ -195,7 +195,7 @@ export default function useChart(options) {
       // Area
       area: {
         fillTo: 'origin',
-      }
+      },
     },
 
     // Responsive

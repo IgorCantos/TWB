@@ -8,27 +8,18 @@ import Chart, { useChart } from 'src/components/chart';
 // ----------------------------------------------------------------------
 
 export default function AppWidgetSummary({ title, total, icon, color = 'primary', sx, ...other }) {
-
   const series = {
-    labels: [
-      '01/01/2024',
-      '04/01/2024',
-      '07/01/2024',
-      '10/01/2024',
-      '12/01/2024',
-    ],
+    labels: ['01/01/2024', '04/01/2024', '07/01/2024', '10/01/2024', '12/01/2024'],
     series: [
       {
         name: 'Renda',
         type: 'area',
         data: [10, 11, 11, 12, 14],
       },
-
     ],
-  }
+  };
 
   const chartOptions = useChart({
-
     fill: {
       type: series.series.map((i) => i.fill),
     },
@@ -37,21 +28,11 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
       labels: {
         show: false,
       },
+      axisBorder: { show: false },
+      axisTicks: { show: false },
     },
     stroke: {
-      curve: 'smooth'
-    },
-    tooltip: {
-      shared: true,
-      intersect: false,
-      y: {
-        formatter: (value) => {
-          if (typeof value !== 'undefined') {
-            return `R$ ${value.toFixed(0)}`;
-          }
-          return value;
-        },
-      },
+      curve: 'smooth',
     },
   });
 
@@ -61,30 +42,25 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
       spacing={3}
       direction="column"
       sx={{
-
         borderRadius: 2,
       }}
     >
-
-      <Stack spacing={0.5} sx={{
-        px: 3,
-        pt: 4,
-      }}>
+      <Stack
+        spacing={0.5}
+        sx={{
+          px: 3,
+          pt: 4,
+        }}
+      >
         <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
           {title}
         </Typography>
 
         {/* TODO: fix color */}
         <Typography variant="h4">{total}</Typography>
-
       </Stack>
 
-      <Chart
-        series={series.series}
-        options={chartOptions}
-        width="100%"
-        height={200}
-      />
+      <Chart series={series.series} options={chartOptions} width="100%" height={200} />
     </Card>
   );
 }

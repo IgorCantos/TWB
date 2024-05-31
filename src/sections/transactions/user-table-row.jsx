@@ -64,13 +64,9 @@ export default function UserTableRow({
           <Label>{type}</Label>
         </TableCell>
 
-        <TableCell>
-          {amount}
-        </TableCell>
+        <TableCell>{amount}</TableCell>
 
-        <TableCell>
-          {totalAccountAmount}
-        </TableCell>
+        <TableCell>{totalAccountAmount}</TableCell>
 
         <TableCell align="right">
           <IconButton onClick={handleOpenMenu}>

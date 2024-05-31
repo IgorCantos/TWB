@@ -29,8 +29,8 @@ const navConfig = [
       {
         title: 'Saldo total',
         path: '/contas/saldo-total',
-      }
-    ]
+      },
+    ],
   },
   {
     title: 'Metas financeiras',

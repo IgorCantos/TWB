@@ -97,10 +97,17 @@ export default function TransactionsPage() {
 
   const notFound = !dataFiltered.length && !!filterName;
 
-
   // TODO: Comes from backend
-  const totalSantander = applyBrlMask(dataFiltered.filter(data => data.bankName === 'Santander').reduce((a, b) => a + Number(b.totalAccountAmount), 0));
-  const totalItau = applyBrlMask(dataFiltered.filter(data => data.bankName === 'Itaú').reduce((a, b) => a + Number(b.totalAccountAmount), 0));
+  const totalSantander = applyBrlMask(
+    dataFiltered
+      .filter((data) => data.bankName === 'Santander')
+      .reduce((a, b) => a + Number(b.totalAccountAmount), 0)
+  );
+  const totalItau = applyBrlMask(
+    dataFiltered
+      .filter((data) => data.bankName === 'Itaú')
+      .reduce((a, b) => a + Number(b.totalAccountAmount), 0)
+  );
 
   return (
     <Container>
@@ -113,9 +120,19 @@ export default function TransactionsPage() {
       </Stack>
 
       <Stack direction="row" alignItems="center" justifyContent="flex-start" mb={5}>
-        <BankData bankName="Santander" bankLogoUrl='/assets/images/avatars/avatar_1.jpg' totalInputs={totalSantander} totalOutputs={totalSantander} />
-        <BankData bankName="Itaú" bankLogoUrl='/assets/images/avatars/avatar_1.jpg' totalInputs={totalItau} totalOutputs={totalItau} />
-      </Stack >
+        <BankData
+          bankName="Santander"
+          bankLogoUrl="/assets/images/avatars/avatar_1.jpg"
+          totalInputs={totalSantander}
+          totalOutputs={totalSantander}
+        />
+        <BankData
+          bankName="Itaú"
+          bankLogoUrl="/assets/images/avatars/avatar_1.jpg"
+          totalInputs={totalItau}
+          totalOutputs={totalItau}
+        />
+      </Stack>
 
       <Card>
         <UserTableToolbar
@@ -183,6 +200,6 @@ export default function TransactionsPage() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>
-    </Container >
+    </Container>
   );
 }

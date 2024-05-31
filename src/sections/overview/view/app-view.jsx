@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -19,8 +19,6 @@ import AppWebsiteVisits from '../app-website-visits';
 import AppWidgetSummary from '../app-widget-summary';
 import AppConversionRates from '../app-conversion-rates';
 
-// ----------------------------------------------------------------------
-
 export default function AppView() {
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
@@ -33,35 +31,28 @@ export default function AppView() {
     },
   };
 
-  const names = [
-    'Santander',
-    'Itaú',
-  ];
-
+  const names = ['Santander', 'Itaú'];
 
   const [personName, setPersonName] = useState([]);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const {
       target: { value },
     } = event;
     setPersonName(
       // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
+      typeof value === 'string' ? value.split(',') : value
     );
   };
 
-
   const [age, setAge] = useState('');
 
-  const handleChange2 = event => {
+  const handleChange2 = (event) => {
     setAge(event.target.value);
   };
 
-
   return (
     <Container maxWidth="xl">
-
       <Grid container spacing={3}>
         <Grid xs={12} sm={6} md={3}>
           <FormControl sx={{ width: 250 }}>
@@ -79,7 +70,7 @@ export default function AppView() {
               {names.map((name) => (
                 <MenuItem key={name} value={name}>
                   <Checkbox checked={personName.indexOf(name) > -1} />
-                  <img src='/assets/icons/ic_flag_en.svg' alt='oi' />
+                  <img src="/assets/icons/ic_flag_en.svg" alt="oi" />
                   <ListItemText primary={name} />
                 </MenuItem>
               ))}
@@ -104,7 +95,7 @@ export default function AppView() {
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
-          <LocalizationProvider dateAdapter={AdapterDayjs} >
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DatePicker']}>
               <DatePicker label="Data de ínicio" />
             </DemoContainer>
@@ -112,13 +103,12 @@ export default function AppView() {
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
-          <LocalizationProvider dateAdapter={AdapterDayjs} >
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DatePicker']}>
               <DatePicker label="Data final" />
             </DemoContainer>
           </LocalizationProvider>
         </Grid>
-
       </Grid>
 
       <Grid container spacing={3}>
@@ -246,14 +236,6 @@ export default function AppView() {
             }}
           />
         </Grid>
-
-
-
-
-
-
-
-
       </Grid>
     </Container>
   );

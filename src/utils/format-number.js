@@ -31,8 +31,7 @@ export function fData(number) {
 }
 
 export function applyBrlMask(value) {
-  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-
+  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
 function result(format, key = '.00') {

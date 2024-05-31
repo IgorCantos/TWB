@@ -35,12 +35,12 @@ export default function LanguagePopover() {
   // };
 
   const toggleAppMode = () => {
-    setAppMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+    setAppMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
 
   return (
     <>
-      <button type='button' onClick={toggleAppMode}>
+      <button type="button" onClick={toggleAppMode}>
         Modo: {appMode}
       </button>
       {/* <IconButton
