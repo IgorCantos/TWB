@@ -4,25 +4,24 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 
-import { fNumber } from 'src/utils/format-number';
+import { applyBrlMask } from 'src/utils/format-number';
 
 import Chart, { useChart } from 'src/components/chart';
 
 // ----------------------------------------------------------------------
 
-export default function AppConversionRates({ title, subheader, chart, ...other }) {
-  const { colors, series, options } = chart;
+export default function RangeChart({ title, subtitle, chart }) {
+  const { series, type } = chart;
 
   const chartSeries = series.map((i) => i.value);
 
   const chartOptions = useChart({
-    colors,
     tooltip: {
-      marker: { show: false },
+      marker: { show: true },
       y: {
-        formatter: (value) => fNumber(value),
+        formatter: (value) => applyBrlMask(value),
         title: {
-          formatter: () => '',
+          formatter: () => 'R$',
         },
       },
     },
@@ -36,17 +35,15 @@ export default function AppConversionRates({ title, subheader, chart, ...other }
     xaxis: {
       categories: series.map((i) => i.label),
     },
-    ...options,
   });
 
   return (
-    <Card {...other}>
-      <CardHeader title={title} subheader={subheader} />
+    <Card>
+      <CardHeader title={title} subheader={subtitle} />
 
       <Box sx={{ mx: 3 }}>
         <Chart
-          dir="ltr"
-          type="bar"
+          type={type}
           series={[{ data: chartSeries }]}
           options={chartOptions}
           width="100%"
@@ -57,8 +54,8 @@ export default function AppConversionRates({ title, subheader, chart, ...other }
   );
 }
 
-AppConversionRates.propTypes = {
+RangeChart.propTypes = {
   chart: PropTypes.object,
-  subheader: PropTypes.string,
+  subtitle: PropTypes.string,
   title: PropTypes.string,
 };

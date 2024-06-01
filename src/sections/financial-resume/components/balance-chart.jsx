@@ -5,9 +5,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Chart, { useChart } from 'src/components/chart';
 
-// ----------------------------------------------------------------------
-
-export default function AppWidgetSummary({ title, total, icon, color = 'primary', sx, ...other }) {
+export default function BalanceChart({ title, subtitle }) {
   const series = {
     labels: ['01/01/2024', '04/01/2024', '07/01/2024', '10/01/2024', '12/01/2024'],
     series: [
@@ -53,22 +51,18 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
         }}
       >
         <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
-          {title}
+          {subtitle}
         </Typography>
 
-        {/* TODO: fix color */}
-        <Typography variant="h4">{total}</Typography>
+        <Typography variant="h4">{title}</Typography>
       </Stack>
 
-      <Chart series={series.series} options={chartOptions} width="100%" height={200} />
+      <Chart type='area' series={series.series} options={chartOptions} width="100%" height={100} />
     </Card>
   );
 }
 
-AppWidgetSummary.propTypes = {
-  color: PropTypes.string,
-  icon: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  sx: PropTypes.object,
-  title: PropTypes.string,
-  total: PropTypes.number,
+BalanceChart.propTypes = {
+  title: PropTypes.number,
+  subtitle: PropTypes.string,
 };

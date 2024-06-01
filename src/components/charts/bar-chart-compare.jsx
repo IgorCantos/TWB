@@ -6,16 +6,13 @@ import CardHeader from '@mui/material/CardHeader';
 
 import Chart, { useChart } from 'src/components/chart';
 
-// ----------------------------------------------------------------------
-
-export default function AppWebsiteVisits({ title, subheader, chart, ...other }) {
-  const { labels, colors, series, options } = chart;
+export default function BarChartCompare({ title, subheader, chart }) {
+  const { labels, series, height } = chart;
 
   const chartOptions = useChart({
-    colors,
     plotOptions: {
       bar: {
-        columnWidth: '20%',
+        columnWidth: '30%',
       },
     },
     fill: {
@@ -37,28 +34,25 @@ export default function AppWebsiteVisits({ title, subheader, chart, ...other }) 
         },
       },
     },
-    ...options,
   });
 
   return (
-    <Card {...other}>
+    <Card>
       <CardHeader title={title} subheader={subheader} />
 
       <Box sx={{ p: 3, pb: 1 }}>
         <Chart
-          dir="ltr"
-          type="line"
           series={series}
           options={chartOptions}
           width="100%"
-          height={364}
+          height={height || 393}
         />
       </Box>
     </Card>
   );
 }
 
-AppWebsiteVisits.propTypes = {
+BarChartCompare.propTypes = {
   chart: PropTypes.object,
   subheader: PropTypes.string,
   title: PropTypes.string,

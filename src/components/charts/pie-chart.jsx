@@ -4,14 +4,13 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import { styled, useTheme } from '@mui/material/styles';
 
+import { fNumber } from 'src/utils/format-number';
+
 import Chart, { useChart } from 'src/components/chart';
 
-// ----------------------------------------------------------------------
 
 const CHART_HEIGHT = 400;
-
 const LEGEND_HEIGHT = 72;
-
 const StyledChart = styled(Chart)(({ theme }) => ({
   height: CHART_HEIGHT,
   '& .apexcharts-canvas, .apexcharts-inner, svg, foreignObject': {
@@ -24,31 +23,51 @@ const StyledChart = styled(Chart)(({ theme }) => ({
   },
 }));
 
-// ----------------------------------------------------------------------
 
-export default function AppCurrentSubject({ title, subheader, chart, ...other }) {
+export default function PieChart({ title, subheader, chart }) {
   const theme = useTheme();
 
-  const { series, colors, categories, options } = chart;
+  const { series, options, height } = chart;
+
+  const chartSeries = series.map((i) => i.value);
 
   const chartOptions = useChart({
-    colors,
-    stroke: {
-      width: 2,
+    chart: {
+      sparkline: {
+        enabled: true,
+      },
     },
-    fill: {
-      opacity: 0.48,
+
+    labels: series.map((i) => i.label),
+    stroke: {
+      colors: [theme.palette.background.paper],
     },
     legend: {
       floating: true,
       position: 'bottom',
       horizontalAlign: 'center',
     },
-    xaxis: {
-      categories,
-      labels: {
-        style: {
-          colors: [...Array(6)].map(() => theme.palette.text.secondary),
+    dataLabels: {
+      enabled: true,
+      dropShadow: {
+        enabled: false,
+      },
+    },
+    tooltip: {
+      fillSeriesColor: false,
+      y: {
+        formatter: (value) => fNumber(value),
+        title: {
+          formatter: (seriesName) => `${seriesName}`,
+        },
+      },
+    },
+    plotOptions: {
+      pie: {
+        donut: {
+          labels: {
+            show: false,
+          },
         },
       },
     },
@@ -56,22 +75,21 @@ export default function AppCurrentSubject({ title, subheader, chart, ...other })
   });
 
   return (
-    <Card {...other}>
+    <Card>
       <CardHeader title={title} subheader={subheader} sx={{ mb: 5 }} />
 
       <StyledChart
-        dir="ltr"
-        type="radar"
-        series={series}
+        type="pie"
+        series={chartSeries}
         options={chartOptions}
         width="100%"
-        height={340}
+        height={height || 280}
       />
     </Card>
   );
 }
 
-AppCurrentSubject.propTypes = {
+PieChart.propTypes = {
   chart: PropTypes.object,
   subheader: PropTypes.string,
   title: PropTypes.string,

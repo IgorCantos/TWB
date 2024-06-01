@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import { AppView } from 'src/sections/overview/view';
+import FinancialResumeView from 'src/sections/financial-resume/view';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ export default function FinancialResumePage() {
         <title> TWB </title>
       </Helmet>
 
-      <AppView />
+      <FinancialResumeView />
     </>
   );
 }
