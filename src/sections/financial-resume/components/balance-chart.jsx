@@ -61,13 +61,7 @@ export default function BalanceChart({ title, subtitle, chart }) {
         <Typography variant="h4">{title}</Typography>
       </Box>
 
-
-      <Chart
-        type={type}
-        series={[{ data: chartSeries }]}
-        options={chartOptions}
-        height={100}
-      />
+      <Chart type={type} series={[{ data: chartSeries }]} options={chartOptions} height={100} />
     </Card>
   );
 }

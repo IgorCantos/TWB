@@ -8,11 +8,11 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { applyBrlMask } from 'src/utils/format-number';
+import { banks } from 'src/_mock/banks';
 
 import PieChart from '../../../components/charts/pie-chart';
 import BarChartCompare from '../../../components/charts/bar-chart-compare';
@@ -20,6 +20,12 @@ import BalanceChart from '../components/balance-chart';
 import RangeChart from '../../../components/charts/range-chart';
 
 export const texts = {
+  selects: {
+    myBanks: 'Meus bancos',
+    dataType: 'Dados de',
+    startFrom: 'Data de ínicio',
+    endIn: 'Data final',
+  },
   balance: {
     openingBalance: 'Saldo inicial',
     totalPeriodExpenses: 'Despesas totais no período',
@@ -35,27 +41,14 @@ export const texts = {
 };
 
 export default function FinancialResumeView() {
-  const [personName, setPersonName] = useState([]);
+  const [bankSelected, setBankSelected] = useState([]);
   const [age, setAge] = useState('');
 
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    PaperProps: {
-      style: {
-        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-        width: 250,
-      },
-    },
-  };
-
-  const names = ['Santander', 'Itaú'];
-
-  const handleChange = (event) => {
+  const handleChangeBankSelect = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    setBankSelected(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     );
@@ -67,25 +60,24 @@ export default function FinancialResumeView() {
 
   return (
     <Container maxWidth="xl">
-      <Grid container spacing={3}>
+      <Grid container spacing={3} my={2}>
         <Grid xs={12} sm={6} md={3}>
-          <FormControl sx={{ width: 250 }}>
-            <InputLabel id="bank-select-label">Meus bancos</InputLabel>
+          <FormControl sx={{ width: '100%' }}>
+            <InputLabel id="bank-select-label">{texts.selects.myBanks}</InputLabel>
             <Select
               labelId="bank-select-label"
               id="bank-select-checkbox"
               multiple
-              value={personName}
-              onChange={handleChange}
-              input={<OutlinedInput label="Meus bancos" />}
+              value={bankSelected}
+              onChange={handleChangeBankSelect}
+              input={<OutlinedInput label={texts.selects.myBanks} />}
               renderValue={(selected) => selected.join(', ')}
-              MenuProps={MenuProps}
             >
-              {names.map((name) => (
-                <MenuItem key={name} value={name}>
-                  <Checkbox checked={personName.indexOf(name) > -1} />
-                  <img src="/assets/icons/ic_flag_en.svg" alt="oi" />
-                  <ListItemText primary={name} />
+              {banks.map((bank) => (
+                <MenuItem key={bank.id} value={bank.name}>
+                  <Checkbox checked={bankSelected.indexOf(bank.name) > -1} />
+                  <img src={bank.customerFriendlyLogoUri} alt={bank.name} width={30} />
+                  <ListItemText primary={bank.name} sx={{ ml: 0.5 }} />
                 </MenuItem>
               ))}
             </Select>
@@ -93,13 +85,13 @@ export default function FinancialResumeView() {
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
-          <FormControl sx={{ marginLeft: 2, width: 250 }}>
-            <InputLabel id="demo-simple-select-label">Dados de</InputLabel>
+          <FormControl sx={{ width: '100%' }}>
+            <InputLabel id="demo-simple-select-label">{texts.selects.dataType}</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={age}
-              label="Dados de"
+              label={texts.selects.dataType}
               onChange={handleChange2}
             >
               <MenuItem value={10}>Extrato de conta</MenuItem>
@@ -110,17 +102,17 @@ export default function FinancialResumeView() {
 
         <Grid xs={12} sm={6} md={3}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['DatePicker']}>
-              <DatePicker label="Data de ínicio" />
-            </DemoContainer>
+            <FormControl sx={{ width: '100%' }}>
+              <DatePicker label={texts.selects.startFrom} />
+            </FormControl>
           </LocalizationProvider>
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['DatePicker']}>
-              <DatePicker label="Data final" />
-            </DemoContainer>
+            <FormControl sx={{ width: '100%' }}>
+              <DatePicker label={texts.selects.endIn} />
+            </FormControl>
           </LocalizationProvider>
         </Grid>
       </Grid>
