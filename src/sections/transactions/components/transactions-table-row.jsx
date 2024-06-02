@@ -16,7 +16,7 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function UserTableRow({
+export default function TransactionsTableRow({
   selected,
   avatarUrl,
   bankName,
@@ -45,8 +45,8 @@ export default function UserTableRow({
         </TableCell>
 
         <TableCell component="th" scope="row" padding="none">
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <Avatar alt={bankName} src={avatarUrl} />
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Avatar alt={bankName} src={avatarUrl} sx={{ width: 30, height: 30 }} />
 
             <Typography variant="subtitle2" noWrap>
               {bankName}
@@ -99,7 +99,7 @@ export default function UserTableRow({
   );
 }
 
-UserTableRow.propTypes = {
+TransactionsTableRow.propTypes = {
   avatarUrl: PropTypes.any,
   transactionDate: PropTypes.any,
   handleClick: PropTypes.func,

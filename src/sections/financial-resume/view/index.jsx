@@ -13,6 +13,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { applyBrlMask } from 'src/utils/format-number';
 import { banks } from 'src/_mock/banks';
+import Avatar from '@mui/material/Avatar';
 
 import PieChart from '../../../components/charts/pie-chart';
 import BarChartCompare from '../../../components/charts/bar-chart-compare';
@@ -22,7 +23,7 @@ import RangeChart from '../../../components/charts/range-chart';
 export const texts = {
   selects: {
     myBanks: 'Meus bancos',
-    dataType: 'Dados de',
+    filterBy: 'Dados de',
     startFrom: 'Data de ínicio',
     endIn: 'Data final',
   },
@@ -42,7 +43,7 @@ export const texts = {
 
 export default function FinancialResumeView() {
   const [bankSelected, setBankSelected] = useState([]);
-  const [age, setAge] = useState('');
+  const [filterBy, setFilterBy] = useState('');
 
   const handleChangeBankSelect = (event) => {
     const {
@@ -54,8 +55,8 @@ export default function FinancialResumeView() {
     );
   };
 
-  const handleChange2 = (event) => {
-    setAge(event.target.value);
+  const handleChangeDataTypeSelect = (event) => {
+    setFilterBy(event.target.value);
   };
 
   return (
@@ -74,10 +75,10 @@ export default function FinancialResumeView() {
               renderValue={(selected) => selected.join(', ')}
             >
               {banks.map((bank) => (
-                <MenuItem key={bank.id} value={bank.name}>
-                  <Checkbox checked={bankSelected.indexOf(bank.name) > -1} />
-                  <img src={bank.customerFriendlyLogoUri} alt={bank.name} width={30} />
-                  <ListItemText primary={bank.name} sx={{ ml: 0.5 }} />
+                <MenuItem key={bank.id} value={bank.bankName}>
+                  <Checkbox checked={bankSelected.indexOf(bank.bankName) > -1} />
+                  <Avatar alt={bank.bankName} src={bank.customerFriendlyLogoUri} sx={{ margin: '0 5px 0 0', width: 25, height: 25 }} />
+                  <ListItemText primary={bank.bankName} />
                 </MenuItem>
               ))}
             </Select>
@@ -86,13 +87,13 @@ export default function FinancialResumeView() {
 
         <Grid xs={12} sm={6} md={3}>
           <FormControl sx={{ width: '100%' }}>
-            <InputLabel id="demo-simple-select-label">{texts.selects.dataType}</InputLabel>
+            <InputLabel id="demo-simple-select-label">{texts.selects.filterBy}</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={age}
-              label={texts.selects.dataType}
-              onChange={handleChange2}
+              value={filterBy}
+              label={texts.selects.filterBy}
+              onChange={handleChangeDataTypeSelect}
             >
               <MenuItem value={10}>Extrato de conta</MenuItem>
               <MenuItem value={20}>Cartões de crédito e débito</MenuItem>

@@ -7,14 +7,13 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 
-// ----------------------------------------------------------------------
 
-export default function BankData({ bankName, bankLogoUrl, totalInputs, totalOutputs }) {
+export default function BankAccountBalance({ bankName, bankLogoUrl, totalInputs, totalOutputs }) {
   return (
     <Card sx={{ margin: '0 10px' }}>
       <Box m={3}>
         <Stack direction="column" alignItems="center">
-          <Avatar alt="Itaú" src={bankLogoUrl} sx={{ marginBottom: '10px' }} />
+          <Avatar alt="Itaú" src={bankLogoUrl} sx={{ marginBottom: '10px', width: 55, height: 55 }} />
           {bankName}
         </Stack>
 
@@ -28,24 +27,31 @@ export default function BankData({ bankName, bankLogoUrl, totalInputs, totalOutp
         >
           <Box mx={2}>
             <Typography>Entradas</Typography>
-            <Typography variant="h5" fontWeight="bold">
+            <Typography>
               {totalInputs}
             </Typography>
           </Box>
 
           <Box mx={2}>
             <Typography>Saídas</Typography>
-            <Typography variant="h5" fontWeight="bold">
+            <Typography>
               {totalOutputs}
             </Typography>
           </Box>
-        </Stack>
-      </Box>
-    </Card>
+
+          <Box mx={2}>
+            <Typography>Saldo</Typography>
+            <Typography>
+              R$ 500,00
+            </Typography>
+          </Box>
+        </Stack >
+      </Box >
+    </Card >
   );
 }
 
-BankData.propTypes = {
+BankAccountBalance.propTypes = {
   bankName: PropTypes.string,
   bankLogoUrl: PropTypes.string,
   totalInputs: PropTypes.string,
