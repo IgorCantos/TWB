@@ -1,53 +1,57 @@
 import PropTypes from 'prop-types';
 
 import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Chart, { useChart } from 'src/components/chart';
+import { applyBrlMask } from 'src/utils/format-number';
 
-export default function BalanceChart({ title, subtitle }) {
-  const series = {
-    labels: ['01/01/2024', '04/01/2024', '07/01/2024', '10/01/2024', '12/01/2024'],
-    series: [
-      {
-        name: 'Renda',
-        type: 'area',
-        data: [10, 11, 11, 12, 14],
-      },
-    ],
-  };
+export default function BalanceChart({ title, subtitle, chart }) {
+  const { series, type } = chart;
+
+  const chartSeries = series.map((i) => i.value);
 
   const chartOptions = useChart({
-    fill: {
-      type: series.series.map((i) => i.fill),
+    tooltip: {
+      marker: { show: false },
+      y: {
+        formatter: (value) => applyBrlMask(value),
+        title: {
+          formatter: () => 'R$',
+        },
+      },
     },
-    labels: series.labels,
     xaxis: {
       labels: {
         show: false,
       },
-      axisBorder: { show: false },
-      axisTicks: { show: false },
+      categories: series.map((i) => i.label),
     },
-    stroke: {
-      curve: 'smooth',
+    yaxis: {
+      labels: {
+        show: false,
+      },
+    },
+    grid: {
+      yaxis: {
+        lines: {
+          show: false,
+        },
+      },
     },
   });
 
   return (
     <Card
-      component={Stack}
-      spacing={3}
       direction="column"
       sx={{
         borderRadius: 2,
       }}
     >
-      <Stack
-        spacing={0.5}
+      <Box
         sx={{
           px: 3,
-          pt: 4,
+          pt: 3,
         }}
       >
         <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
@@ -55,9 +59,15 @@ export default function BalanceChart({ title, subtitle }) {
         </Typography>
 
         <Typography variant="h4">{title}</Typography>
-      </Stack>
+      </Box>
 
-      <Chart type='area' series={series.series} options={chartOptions} width="100%" height={100} />
+
+      <Chart
+        type={type}
+        series={[{ data: chartSeries }]}
+        options={chartOptions}
+        height={100}
+      />
     </Card>
   );
 }
@@ -65,4 +75,5 @@ export default function BalanceChart({ title, subtitle }) {
 BalanceChart.propTypes = {
   title: PropTypes.number,
   subtitle: PropTypes.string,
+  chart: PropTypes.object,
 };

@@ -59,13 +59,7 @@ export default function RadarChart({ title, subheader, chart, ...other }) {
     <Card {...other}>
       <CardHeader title={title} subheader={subheader} sx={{ mb: 5 }} />
 
-      <StyledChart
-        type="radar"
-        series={series}
-        options={chartOptions}
-        width="100%"
-        height={340}
-      />
+      <StyledChart type="radar" series={series} options={chartOptions} width="100%" height={340} />
     </Card>
   );
 }

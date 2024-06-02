@@ -8,7 +8,6 @@ import { fNumber } from 'src/utils/format-number';
 
 import Chart, { useChart } from 'src/components/chart';
 
-
 const CHART_HEIGHT = 400;
 const LEGEND_HEIGHT = 72;
 const StyledChart = styled(Chart)(({ theme }) => ({
@@ -22,7 +21,6 @@ const StyledChart = styled(Chart)(({ theme }) => ({
     top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`,
   },
 }));
-
 
 export default function PieChart({ title, subheader, chart }) {
   const theme = useTheme();

@@ -41,12 +41,7 @@ export default function BarChartCompare({ title, subheader, chart }) {
       <CardHeader title={title} subheader={subheader} />
 
       <Box sx={{ p: 3, pb: 1 }}>
-        <Chart
-          series={series}
-          options={chartOptions}
-          width="100%"
-          height={height || 393}
-        />
+        <Chart series={series} options={chartOptions} width="100%" height={height || 393} />
       </Box>
     </Card>
   );
