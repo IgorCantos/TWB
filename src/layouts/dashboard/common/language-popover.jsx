@@ -5,7 +5,6 @@ import { useAppMode } from 'src/contexts/app-mode-context';
 export default function LanguagePopover() {
   const { appMode, setAppMode } = useAppMode();
 
-
   const toggleAppMode = () => {
     setAppMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };

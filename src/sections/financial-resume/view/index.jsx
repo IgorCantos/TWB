@@ -77,7 +77,11 @@ export default function FinancialResumeView() {
               {banks.map((bank) => (
                 <MenuItem key={bank.id} value={bank.bankName}>
                   <Checkbox checked={bankSelected.indexOf(bank.bankName) > -1} />
-                  <Avatar alt={bank.bankName} src={bank.customerFriendlyLogoUri} sx={{ margin: '0 5px 0 0', width: 25, height: 25 }} />
+                  <Avatar
+                    alt={bank.bankName}
+                    src={bank.customerFriendlyLogoUri}
+                    sx={{ margin: '0 5px 0 0', width: 25, height: 25 }}
+                  />
                   <ListItemText primary={bank.bankName} />
                 </MenuItem>
               ))}
