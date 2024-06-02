@@ -11,12 +11,8 @@ export default function BankAccountBalance({ bankName, bankLogoUrl, totalInputs,
   return (
     <Card sx={{ margin: '0 10px' }}>
       <Box m={3}>
-        <Stack direction="column" alignItems="center">
-          <Avatar
-            alt="Itaú"
-            src={bankLogoUrl}
-            sx={{ marginBottom: '10px', width: 55, height: 55 }}
-          />
+        <Stack direction="row" alignItems="center" justifyContent="center">
+          <Avatar alt="Itaú" src={bankLogoUrl} sx={{ margin: '0 10px', width: 55, height: 55 }} />
           {bankName}
         </Stack>
 
