@@ -215,7 +215,7 @@ export default function FinancialResumeView() {
         </Grid>
       </Grid>
 
-      <Grid container spacing={3}>
+      <Grid container spacing={3} mt={1.5}>
         <Grid xs={12} md={6} lg={8}>
           <BarChartCompare
             title={texts.balance.vsExpense}
