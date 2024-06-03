@@ -4,7 +4,8 @@ import { Outlet, Navigate, useRoutes } from 'react-router-dom';
 import DashboardLayout from 'src/layouts/dashboard';
 
 export const FinancialResumePage = lazy(() => import('src/pages/financial-resume'));
-export const TransactionsPage = lazy(() => import('src/pages/transactions'));
+export const TransactionsPage = lazy(() => import('src/pages/banks/transactions'));
+export const ManageBanksPage = lazy(() => import('src/pages/banks/manage-banks'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
 
 export default function Router() {
@@ -19,7 +20,8 @@ export default function Router() {
       ),
       children: [
         { element: <FinancialResumePage />, index: true },
-        { path: 'transacoes', element: <TransactionsPage /> },
+        { path: 'bancos/transacoes', element: <TransactionsPage /> },
+        { path: 'bancos/gerenciar', element: <ManageBanksPage /> },
       ],
     },
     {

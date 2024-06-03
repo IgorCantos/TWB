@@ -12,36 +12,40 @@ const navConfig = [
     path: '/',
     icon: icon('ic_analytics'),
   },
+  // {
+  //   title: 'Transações',
+  //   path: '/transacoes',
+  //   icon: icon('ic_user'),
+  // },
   {
-    title: 'Transações',
-    path: '/transacoes',
-    icon: icon('ic_user'),
-  },
-  {
-    title: 'Contas',
+    title: 'Meus bancos',
     path: '/products',
     icon: icon('ic_cart'),
     children: [
       {
-        title: 'Gerenciar',
-        path: '/contas/gerenciar',
+        title: 'Gerenciar bancos',
+        path: '/bancos/gerenciar',
       },
       {
-        title: 'Saldo total',
-        path: '/contas/saldo-total',
+        title: 'Transações realizadas',
+        path: '/bancos/transacoes',
+      },
+      {
+        title: 'Cartões e faturas',
+        path: '/',
       },
     ],
   },
-  {
-    title: 'Metas financeiras',
-    path: '/404',
-    icon: icon('ic_blog'),
-  },
-  {
-    title: 'Projeções e análises',
-    path: '/404',
-    icon: icon('ic_analytics'),
-  },
+  // {
+  //   title: 'Metas financeiras',
+  //   path: '/404',
+  //   icon: icon('ic_blog'),
+  // },
+  // {
+  //   title: 'Projeções e análises',
+  //   path: '/404',
+  //   icon: icon('ic_analytics'),
+  // },
   // {
   //   title: 'Not found',
   //   path: '/404',

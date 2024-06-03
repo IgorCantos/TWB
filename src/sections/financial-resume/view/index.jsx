@@ -23,7 +23,7 @@ import RangeChart from '../../../components/charts/range-chart';
 export const texts = {
   selects: {
     myBanks: 'Meus bancos',
-    filterBy: 'Dados de',
+    filterBy: 'Ver dados de',
     startFrom: 'Data de ínicio',
     endIn: 'Data final',
   },
@@ -33,7 +33,7 @@ export const texts = {
     totalPeriodEntries: 'Entradas totais no período',
     finalBalance: 'Saldo final',
     netEvolution: 'Evolução saldo líquido mensal',
-    vsExpense: 'Renda vs Despesas',
+    vsExpense: 'Renda x Despesas',
   },
   expenses: {
     categorized: 'Despesas categorizadas',
