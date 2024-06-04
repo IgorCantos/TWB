@@ -3,20 +3,18 @@ import { useState } from 'react';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
-import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import TableBody from '@mui/material/TableBody';
 import Typography from '@mui/material/Typography';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 
-
-import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
-import { texts } from 'src/sections/financial-resume/view';
 
-import { applyBrlMask } from 'src/utils/format-number';
 import { banks } from 'src/_mock/banks';
 import Grid from '@mui/material/Unstable_Grid2';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -28,11 +26,11 @@ import UserTableHead from '../user-table-head';
 import TableEmptyRows from '../table-empty-rows';
 import UserTableToolbar from '../user-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
-import BankAccountBalance from '../components/bank-account-balance';
+import InvoiceCard from '../components/bank-account-balance';
 
 // ----------------------------------------------------------------------
 
-export default function TransactionsView() {
+export default function InvoicesView() {
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -43,6 +41,7 @@ export default function TransactionsView() {
   const [filterName, setFilterName] = useState('');
 
   const [rowsPerPage, setRowsPerPage] = useState(50);
+  const [filterBy, setFilterBy] = useState('');
 
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
@@ -101,59 +100,78 @@ export default function TransactionsView() {
 
   const notFound = !dataFiltered.length && !!filterName;
 
-  // TODO: Comes from backend
-  const totalSantander = applyBrlMask(
-    dataFiltered
-      .filter((data) => data.bankName === 'Santander')
-      .reduce((a, b) => a + Number(b.totalAccountAmount), 0)
-  );
-  const totalItau = applyBrlMask(
-    dataFiltered
-      .filter((data) => data.bankName === 'Itaú')
-      .reduce((a, b) => a + Number(b.totalAccountAmount), 0)
-  );
+  const handleChangeDataTypeSelect = (event) => {
+    setFilterBy(event.target.value);
+  };
 
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" my={3}>
-        <Typography variant="h4">Minhas transações</Typography>
-
-        <Button variant="contained" color="inherit" startIcon={<Iconify icon="eva:plus-fill" />}>
-          Cadastrar transação
-        </Button>
+        <Typography variant="h4">Minhas faturas</Typography>
       </Stack>
 
       <Grid container spacing={3} my={2}>
         <Grid xs={12} sm={6} md={3}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <FormControl sx={{ width: '100%' }}>
-              <DatePicker label={texts.selects.startFrom} />
-            </FormControl>
-          </LocalizationProvider>
+          <FormControl sx={{ width: '100%' }}>
+            <InputLabel id="demo-simple-select-label">Selecione o banco</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={filterBy}
+              label="Selecione o banco"
+              onChange={handleChangeDataTypeSelect}
+            >
+              <MenuItem value="Banco Santander">Banco Santander</MenuItem>
+              <MenuItem value="Nubank">Nubank</MenuItem>
+            </Select>
+          </FormControl>
         </Grid>
 
         <Grid xs={12} sm={6} md={3}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <FormControl sx={{ width: '100%' }}>
-              <DatePicker label={texts.selects.endIn} />
+              <DatePicker label="Selecione o mês" />
             </FormControl>
           </LocalizationProvider>
         </Grid>
       </Grid>
 
-      <Stack direction="row" alignItems="center" justifyContent="flex-start" mb={5}>
-        <BankAccountBalance
-          bankName={banks[0].bankName}
-          bankLogoUrl={banks[0].customerFriendlyLogoUri}
-          totalInputs={totalSantander}
-          totalOutputs={totalSantander}
-        />
-        <BankAccountBalance
-          bankName={banks[1].bankName}
-          bankLogoUrl={banks[1].customerFriendlyLogoUri}
-          totalInputs={totalItau}
-          totalOutputs={totalItau}
-        />
+      <Grid container spacing={3} my={2}>
+        {filterBy && (
+          <>
+            <Grid xs={12} sm={6} md={3}>
+              {filterBy === 'Banco Santander' && (
+                <img
+                  src="https://cms.santander.com.br/sites/WPS/imagem/img-cartao-unlimited-sem-bandeira/22-05-30_165021_P_cartao_unlimited_sembandeira.png"
+                  alt="Santander"
+                />
+              )}
+
+              {filterBy === 'Nubank' && (
+                <img
+                  src="https://s2-techtudo.glbimg.com/251VTGpAhn_DnRdwLMWx6OGgPQU=/1200x/smart/filters:cover():strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2019/D/0/2eNl0kQFSRGlRT8GB6Ow/nu-card-large.png"
+                  alt="Santander"
+                />
+              )}
+            </Grid>
+
+            <Grid xs={12} sm={6} md={3}>
+              <InvoiceCard subtitle="Valor atual da fatura" title="R$ 300,00" />
+            </Grid>
+
+            <Grid xs={12} sm={6} md={3}>
+              <InvoiceCard subtitle="Limite disponivel" title="R$ 100,00" />
+            </Grid>
+
+            <Grid xs={12} sm={6} md={3}>
+              <InvoiceCard subtitle="Saldo em conta" title="R$ 1000,00" />
+            </Grid>
+          </>
+        )}
+      </Grid>
+
+      <Stack direction="row" alignItems="center" justifyContent="space-between" my={3}>
+        <Typography variant="h4">Transações dessa fatura</Typography>
       </Stack>
 
       <Card>
@@ -186,6 +204,7 @@ export default function TransactionsView() {
               />
               <TableBody>
                 {dataFiltered
+                  .filter((transaction) => transaction.bankName === filterBy)
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <TransactionsTableRow

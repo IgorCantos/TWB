@@ -32,7 +32,7 @@ const navConfig = [
       },
       {
         title: 'Cartões e faturas',
-        path: '/',
+        path: '/bancos/faturas',
       },
     ],
   },
