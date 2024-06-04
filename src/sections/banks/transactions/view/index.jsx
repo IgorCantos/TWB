@@ -11,7 +11,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import FormControl from '@mui/material/FormControl';
 
-import { users } from 'src/_mock/user';
 
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
@@ -39,7 +38,7 @@ export default function TransactionsView() {
   const [order, setOrder] = useState('asc');
 
   const [selected, setSelected] = useState([]);
-
+  console.log('selected', selected)
   const [orderBy, setOrderBy] = useState('name');
 
   const [filterName, setFilterName] = useState('');
@@ -56,7 +55,7 @@ export default function TransactionsView() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = users.map((n) => n.id);
+      const newSelecteds = banks.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -178,6 +177,7 @@ export default function TransactionsView() {
                 headLabel={[
                   { id: 'bankName', label: 'Banco' },
                   { id: 'transactionDate', label: 'Data da transação' },
+                  { id: 'cardNumber', label: 'Final do cartão' },
                   { id: 'category', label: 'Categoria' },
                   { id: 'type', label: 'Tipo', align: 'left' },
                   { id: 'amount', label: 'Valor (R$)' },
@@ -189,23 +189,26 @@ export default function TransactionsView() {
                 {dataFiltered
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
-                    <TransactionsTableRow
-                      key={row.id}
-                      avatarUrl={row.customerFriendlyLogoUri}
-                      bankName={row.bankName}
-                      transactionDate={row.transactionDate}
-                      category={row.category}
-                      type={row.type}
-                      amount={row.amount}
-                      totalAccountAmount={row.totalAccountAmount}
-                      handleClick={(event) => handleClick(event, row.id)}
-                      selected={selected.indexOf(row.id) !== -1}
-                    />
+                    <>
+                      {console.log(row)}
+                      <TransactionsTableRow
+                        key={row.id}
+                        avatarUrl={row.customerFriendlyLogoUri}
+                        bankName={row.bankName}
+                        transactionDate={row.transactionDate}
+                        cardNumber={row.cardNumber}
+                        category={row.category}
+                        type={row.type}
+                        amount={row.amount}
+                        totalAccountAmount={row.totalAccountAmount}
+                        handleClick={(event) => handleClick(event, row.id)}
+                        selected={selected.indexOf(row.id) !== -1}
+                      /></>
                   ))}
 
                 <TableEmptyRows
                   height={77}
-                  emptyRows={emptyRows(page, rowsPerPage, users.length)}
+                  emptyRows={emptyRows(page, rowsPerPage, banks.length)}
                 />
 
                 {notFound && <TableNoData query={filterName} />}
@@ -217,7 +220,7 @@ export default function TransactionsView() {
         <TablePagination
           page={page}
           component="div"
-          count={users.length}
+          count={banks.length}
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
           rowsPerPageOptions={[50, 100, 150]}

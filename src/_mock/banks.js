@@ -103,4 +103,5 @@ export const banks = [...Array(19)].map((_, index) => ({
   type: sample(['Crédito', 'Pix', 'Débito', 'Parcelado']),
   amount: faker.finance.amount(),
   totalAccountAmount: faker.finance.amount(),
+  cardNumber: 1234,
 }));

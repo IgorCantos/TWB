@@ -8,10 +8,7 @@ import Button from '@mui/material/Button';
 
 import { RouterLink } from 'src/routes/components';
 
-export default function ManageBankCard({
-  bankName,
-  bankLogoUrl,
-}) {
+export default function ManageBankCard({ bankName, bankLogoUrl }) {
   return (
     <Card sx={{ margin: '0 10px', minWidth: '300px' }}>
       <Box m={3}>
@@ -21,11 +18,23 @@ export default function ManageBankCard({
         </Stack>
 
         <Stack direction="row" alignItems="center" justifyContent="center" my={3}>
-          <Button href="/" size="large" variant="outlined" component={RouterLink} sx={{ margin: '0 10px' }}>
+          <Button
+            href="/"
+            size="large"
+            variant="outlined"
+            component={RouterLink}
+            sx={{ margin: '0 10px' }}
+          >
             Deletar
           </Button>
 
-          <Button href="/" size="large" variant="contained" component={RouterLink} sx={{ margin: '0 10px' }}>
+          <Button
+            href="/"
+            size="large"
+            variant="contained"
+            component={RouterLink}
+            sx={{ margin: '0 10px' }}
+          >
             Atualizar
           </Button>
         </Stack>

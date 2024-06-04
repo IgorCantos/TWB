@@ -21,6 +21,7 @@ export default function TransactionsTableRow({
   avatarUrl,
   bankName,
   transactionDate,
+  cardNumber,
   category,
   type,
   amount,
@@ -55,7 +56,7 @@ export default function TransactionsTableRow({
         </TableCell>
 
         <TableCell>{transactionDate}</TableCell>
-
+        <TableCell>{cardNumber}</TableCell>
         <TableCell>
           <Label>{category}</Label>
         </TableCell>
@@ -102,6 +103,7 @@ export default function TransactionsTableRow({
 TransactionsTableRow.propTypes = {
   avatarUrl: PropTypes.any,
   transactionDate: PropTypes.any,
+  cardNumber: PropTypes.any,
   handleClick: PropTypes.func,
   type: PropTypes.any,
   bankName: PropTypes.any,
