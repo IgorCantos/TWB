@@ -7,8 +7,6 @@ import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 
-import { useResponsive } from 'src/hooks/use-responsive';
-
 import { bgBlur } from 'src/theme/css';
 
 import Iconify from 'src/components/iconify';
@@ -25,7 +23,8 @@ import LanguagePopover from './common/language-popover';
 export default function Header({ onOpenNav }) {
   const theme = useTheme();
 
-  const lgUp = useResponsive('up', 'lg');
+  // const lgUp = useResponsive('up', 'lg');
+  const lgUp = false;
 
   const renderContent = (
     <>

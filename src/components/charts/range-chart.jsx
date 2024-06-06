@@ -11,7 +11,7 @@ import Chart, { useChart } from 'src/components/chart';
 // ----------------------------------------------------------------------
 
 export default function RangeChart({ title, subtitle, chart }) {
-  const { series, type } = chart;
+  const { series, type, height } = chart;
 
   const chartSeries = series.map((i) => i.value);
 
@@ -27,7 +27,7 @@ export default function RangeChart({ title, subtitle, chart }) {
     },
     plotOptions: {
       bar: {
-        horizontal: false,
+        horizontal: true,
         barHeight: '28%',
         borderRadius: 2,
       },
@@ -47,7 +47,7 @@ export default function RangeChart({ title, subtitle, chart }) {
           series={[{ data: chartSeries }]}
           options={chartOptions}
           width="100%"
-          height={364}
+          height={height || 360}
         />
       </Box>
     </Card>

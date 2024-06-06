@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 import Chart, { useChart } from 'src/components/chart';
 import { applyBrlMask } from 'src/utils/format-number';
 
 export default function BalanceChart({ title, subtitle, chart }) {
-  const { series, type } = chart;
+  const { series, type, height } = chart;
 
   const chartSeries = series.map((i) => i.value);
 
@@ -43,25 +44,29 @@ export default function BalanceChart({ title, subtitle, chart }) {
 
   return (
     <Card
-      direction="column"
       sx={{
         borderRadius: 2,
+        px: 3,
       }}
     >
-      <Box
-        sx={{
-          px: 3,
-          pt: 3,
-        }}
-      >
-        <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
-          {subtitle}
-        </Typography>
+      <Stack direction="row">
+        <Box display="flex" alignItems="center">
+          <Box>
+            <Typography variant="subtitle2" sx={{ color: 'text.disabled' }}>
+              {subtitle}
+            </Typography>
 
-        <Typography variant="h4">{title}</Typography>
-      </Box>
+            <Typography variant="h4">{title}</Typography>
+          </Box>
+        </Box>
 
-      <Chart type={type} series={[{ data: chartSeries }]} options={chartOptions} height={100} />
+        <Chart
+          type={type}
+          series={[{ data: chartSeries }]}
+          options={chartOptions}
+          height={height || 100}
+        />
+      </Stack>
     </Card>
   );
 }

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const AppModeContext = createContext();
 
 export function AppModeProvider({ children }) {
-  const [appMode, setAppMode] = useState('light');
+  const [appMode, setAppMode] = useState('dark');
 
   const value = useMemo(() => ({ appMode, setAppMode }), [appMode, setAppMode]);
 

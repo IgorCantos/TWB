@@ -14,8 +14,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { usePathname } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
 
-import { useResponsive } from 'src/hooks/use-responsive';
-
 import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
 
@@ -27,7 +25,8 @@ import navConfig from './config-navigation';
 export default function Nav({ openNav, onCloseNav }) {
   const pathname = usePathname();
 
-  const upLg = useResponsive('up', 'lg');
+  // const upLg = useResponsive('up', 'lg');
+  const upLg = false;
 
   useEffect(() => {
     if (openNav) {
@@ -102,7 +101,7 @@ export default function Nav({ openNav, onCloseNav }) {
     <Box
       sx={{
         flexShrink: { lg: 0 },
-        width: { lg: NAV.WIDTH },
+        // width: { lg: NAV.WIDTH },
       }}
     >
       {upLg ? (
