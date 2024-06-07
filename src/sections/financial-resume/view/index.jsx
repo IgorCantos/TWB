@@ -44,7 +44,7 @@ export default function FinancialResumeView() {
   return (
     <Container maxWidth="xl">
       {/* Selects */}
-      <Grid container spacing={3} my={0}>
+      <Grid container spacing={3} my={0} justifyContent='center'>
         {/* <Grid xs={12} sm={6} md={3}>
           <FormControl sx={{ width: '100%' }}>
             <InputLabel id="bank-select-label">{texts.selects.myBanks}</InputLabel>
@@ -107,7 +107,7 @@ export default function FinancialResumeView() {
 
       <Grid container spacing={3} my={0}>
         <Grid xs={12}>
-          <Typography variant="h4" mt={3}>
+          <Typography variant="h4">
             Recebimentos e pagamentos
           </Typography>
         </Grid>
