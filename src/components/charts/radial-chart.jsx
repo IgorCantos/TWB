@@ -8,7 +8,7 @@ import { applyBrlMask } from 'src/utils/format-number';
 
 import Chart, { useChart } from 'src/components/chart';
 
-const CHART_HEIGHT = 400;
+const CHART_HEIGHT = 422;
 const LEGEND_HEIGHT = 72;
 const StyledChart = styled(Chart)(({ theme }) => ({
   height: CHART_HEIGHT,
@@ -22,12 +22,10 @@ const StyledChart = styled(Chart)(({ theme }) => ({
   },
 }));
 
-export default function PieChart({ title, subheader, chart }) {
+export default function RadialChart({ title, subheader, chart }) {
   const theme = useTheme();
 
-  const { series, height, type } = chart;
-
-  const chartSeries = series.map((i) => i.value);
+  const { series, labels, height, type } = chart;
 
   const chartOptions = useChart({
     chart: {
@@ -35,7 +33,7 @@ export default function PieChart({ title, subheader, chart }) {
         enabled: true,
       },
     },
-    labels: series.map((i) => i.label),
+    labels,
     stroke: {
       colors: [theme.palette.background.paper],
     },
@@ -60,34 +58,31 @@ export default function PieChart({ title, subheader, chart }) {
       },
     },
     plotOptions: {
-      ...(type === 'pie' && {
-        pie: {
-          donut: {
-            labels: {
-              show: false,
-            },
+      radialBar: {
+        dataLabels: {
+          name: {
+            fontSize: '16px',
+          },
+          value: {
+            fontSize: '18px',
+          },
+          total: {
+            show: false,
+            label: 'Total',
+            formatter: (w) => w,
           },
         },
-      }),
-      ...(type === 'donut' && {
-        donut: {
-          donut: {
-            labels: {
-              show: true,
-            },
-          },
-        },
-      }),
+      },
     },
   });
 
   return (
     <Card>
-      <CardHeader title={title} subheader={subheader} sx={{ mb: 5 }} />
+      <CardHeader title={title} subheader={subheader} />
 
       <StyledChart
         type={type}
-        series={chartSeries}
+        series={series}
         options={chartOptions}
         width="100%"
         height={height || 280}
@@ -96,7 +91,7 @@ export default function PieChart({ title, subheader, chart }) {
   );
 }
 
-PieChart.propTypes = {
+RadialChart.propTypes = {
   chart: PropTypes.object,
   subheader: PropTypes.string,
   title: PropTypes.string,

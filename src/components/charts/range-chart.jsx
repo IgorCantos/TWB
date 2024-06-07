@@ -27,7 +27,7 @@ export default function RangeChart({ title, subtitle, chart }) {
     },
     plotOptions: {
       bar: {
-        horizontal: true,
+        horizontal: false,
         barHeight: '28%',
         borderRadius: 2,
       },

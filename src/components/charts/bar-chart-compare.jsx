@@ -19,9 +19,6 @@ export default function BarChartCompare({ title, subheader, chart }) {
       type: series.map((i) => i.fill),
     },
     labels,
-    xaxis: {
-      type: 'datetime',
-    },
     tooltip: {
       shared: true,
       intersect: false,

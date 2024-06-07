@@ -10,7 +10,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Toolbar from '@mui/material/Toolbar';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Label from 'src/components/label';
@@ -19,11 +18,6 @@ export default function DenseTable({ headLabel, rows }) {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <Toolbar>
-          <Typography sx={{ flex: '1 1 100%' }} variant="h6" id="tableTitle" component="div">
-            Minhas últimas transações
-          </Typography>
-        </Toolbar>
         <TableContainer>
           <Table sx={{ minWidth: 650 }}>
             <TableHead>
