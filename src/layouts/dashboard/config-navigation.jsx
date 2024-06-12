@@ -19,7 +19,6 @@ const navConfig = [
   // },
   {
     title: 'Meus bancos',
-    path: '/products',
     icon: icon('ic_cart'),
     children: [
       {
@@ -36,11 +35,11 @@ const navConfig = [
       },
     ],
   },
-  // {
-  //   title: 'Metas financeiras',
-  //   path: '/404',
-  //   icon: icon('ic_blog'),
-  // },
+  {
+    title: 'Análises e Projeções',
+    path: '/analises',
+    icon: icon('ic_analytics'),
+  },
   // {
   //   title: 'Projeções e análises',
   //   path: '/404',
