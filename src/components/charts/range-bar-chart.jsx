@@ -6,30 +6,28 @@ import CardHeader from '@mui/material/CardHeader';
 
 import Chart, { useChart } from 'src/components/chart';
 
-export default function HeatmapChart({ title, subheader, chart }) {
-  const { labels, series, type, height } = chart;
+export default function RangeBarChart({ title, subheader, chart }) {
+  const { series, type, height } = chart;
 
   const chartOptions = useChart({
-    labels,
+    chart: {
+      type: 'rangeBar',
+      height: 350,
+    },
+    plotOptions: {
+      bar: {
+        horizontal: true,
+      },
+    },
+    dataLabels: {
+      enabled: true,
+      // formatter: (val) => {
+      //   return `R$ ${val}`
+      // }
+    },
     tooltip: {
-      shared: true,
+      shared: false,
       intersect: false,
-      y: {
-        formatter: (value) => {
-          if (typeof value !== 'undefined') {
-            return `R$ ${value.toFixed(0)}`;
-          }
-          return value;
-        },
-      },
-      x: {
-        formatter: (value) => {
-          if (typeof value !== 'undefined') {
-            return `Dia ${value}`;
-          }
-          return value;
-        },
-      },
     },
   });
 
@@ -50,7 +48,7 @@ export default function HeatmapChart({ title, subheader, chart }) {
   );
 }
 
-HeatmapChart.propTypes = {
+RangeBarChart.propTypes = {
   chart: PropTypes.object,
   subheader: PropTypes.string,
   title: PropTypes.string,

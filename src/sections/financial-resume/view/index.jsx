@@ -11,7 +11,7 @@ import { banks } from 'src/_mock/banks';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-
+import CardHeader from '@mui/material/CardHeader';
 import DenseTable from 'src/components/tables/basic-table';
 
 import RadialChart from 'src/components/charts/radial-chart';
@@ -44,7 +44,7 @@ export default function FinancialResumeView() {
   return (
     <Container maxWidth="xl">
       {/* Selects */}
-      <Grid container spacing={3} my={0} justifyContent='center'>
+      <Grid container spacing={3} my={0} justifyContent="center">
         {/* <Grid xs={12} sm={6} md={3}>
           <FormControl sx={{ width: '100%' }}>
             <InputLabel id="bank-select-label">{texts.selects.myBanks}</InputLabel>
@@ -107,48 +107,49 @@ export default function FinancialResumeView() {
 
       <Grid container spacing={3} my={0}>
         <Grid xs={12}>
-          <Typography variant="h4">
-            Recebimentos e pagamentos
-          </Typography>
+          <Typography variant="h4">Recebimentos e pagamentos</Typography>
         </Grid>
       </Grid>
 
       {/* Renda x Despesa */}
       <Grid container spacing={3} my={0}>
         <Grid xs={12} md={6} lg={8}>
-          <BarChartCompare
-            title={texts.balance.vsExpense}
-            subheader="Subtitulo"
-            chart={{
-              labels: [
-                '01/01/2024',
-                '02/01/2024',
-                '03/01/2024',
-                '04/01/2024',
-                '05/01/2024',
-                '06/01/2024',
-                '07/01/2024',
-                '08/01/2024',
-                '09/01/2024',
-                '10/01/2024',
-                '11/01/2024',
-              ],
-              series: [
-                {
-                  name: 'Renda',
-                  type: 'area',
-                  fill: 'gradient',
-                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
-                },
-                {
-                  name: 'Despesa',
-                  type: 'area',
-                  fill: 'gradient',
-                  data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
-                },
-              ],
-            }}
-          />
+          <Card>
+            <CardHeader title={texts.balance.vsExpense} />
+            <BarChartCompare
+              title={texts.balance.vsExpense}
+              subheader="Subtitulo"
+              chart={{
+                labels: [
+                  '01/01/2024',
+                  '02/01/2024',
+                  '03/01/2024',
+                  '04/01/2024',
+                  '05/01/2024',
+                  '06/01/2024',
+                  '07/01/2024',
+                  '08/01/2024',
+                  '09/01/2024',
+                  '10/01/2024',
+                  '11/01/2024',
+                ],
+                series: [
+                  {
+                    name: 'Renda',
+                    type: 'area',
+                    fill: 'gradient',
+                    data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+                  },
+                  {
+                    name: 'Despesa',
+                    type: 'area',
+                    fill: 'gradient',
+                    data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
+                  },
+                ],
+              }}
+            />
+          </Card>
         </Grid>
 
         <Grid lg={4}>
@@ -275,56 +276,58 @@ export default function FinancialResumeView() {
       {/* Investimentos */}
       <Grid container spacing={3} my={0}>
         <Grid xs={12} md={6} lg={12}>
-          <BarChartCompare
-            chart={{
-              labels: [
-                'Jan',
-                'Fev',
-                'Mar',
-                'Abr',
-                'Mai',
-                'Jun',
-                'Jul',
-                'Ago',
-                'Set',
-                'Out',
-                'Nov',
-                'Dez',
-              ],
-              series: [
-                {
-                  name: 'Ações',
-                  type: 'bar',
-                  fill: 'gradient',
-                  data: [4200, 1300, 4900, 3500, 2100, 3700, 2600, 4500, 5000, 2300, 1800, 3900],
-                },
-                {
-                  name: 'Fundos imobiliarios',
-                  type: 'bar',
-                  fill: 'gradient',
-                  data: [3300, 1700, 4100, 2800, 3900, 2200, 3100, 2700, 3000, 1900, 2100, 4400],
-                },
-                {
-                  name: 'Renda fixa',
-                  type: 'bar',
-                  fill: 'gradient',
-                  data: [3400, 2900, 3800, 2200, 3100, 2700, 3200, 2500, 2000, 3600, 2400, 3000],
-                },
-                {
-                  name: 'Criptomoedas',
-                  type: 'bar',
-                  fill: 'gradient',
-                  data: [1352, 3821, 3424, 2121, 3374, 2651, 3128, 2271, 1970, 3531, 2229, 3205],
-                },
-                {
-                  name: 'Outros',
-                  type: 'bar',
-                  fill: 'gradient',
-                  data: [1500, 1900, 2900, 1000, 3000, 1200, 2700, 1700, 2200, 1400, 3100, 2400],
-                },
-              ],
-            }}
-          />
+          <Card>
+            <BarChartCompare
+              chart={{
+                labels: [
+                  'Jan',
+                  'Fev',
+                  'Mar',
+                  'Abr',
+                  'Mai',
+                  'Jun',
+                  'Jul',
+                  'Ago',
+                  'Set',
+                  'Out',
+                  'Nov',
+                  'Dez',
+                ],
+                series: [
+                  {
+                    name: 'Ações',
+                    type: 'bar',
+                    fill: 'gradient',
+                    data: [4200, 1300, 4900, 3500, 2100, 3700, 2600, 4500, 5000, 2300, 1800, 3900],
+                  },
+                  {
+                    name: 'Fundos imobiliarios',
+                    type: 'bar',
+                    fill: 'gradient',
+                    data: [3300, 1700, 4100, 2800, 3900, 2200, 3100, 2700, 3000, 1900, 2100, 4400],
+                  },
+                  {
+                    name: 'Renda fixa',
+                    type: 'bar',
+                    fill: 'gradient',
+                    data: [3400, 2900, 3800, 2200, 3100, 2700, 3200, 2500, 2000, 3600, 2400, 3000],
+                  },
+                  {
+                    name: 'Criptomoedas',
+                    type: 'bar',
+                    fill: 'gradient',
+                    data: [1352, 3821, 3424, 2121, 3374, 2651, 3128, 2271, 1970, 3531, 2229, 3205],
+                  },
+                  {
+                    name: 'Outros',
+                    type: 'bar',
+                    fill: 'gradient',
+                    data: [1500, 1900, 2900, 1000, 3000, 1200, 2700, 1700, 2200, 1400, 3100, 2400],
+                  },
+                ],
+              }}
+            />
+          </Card>
         </Grid>
       </Grid>
 

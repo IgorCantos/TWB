@@ -11,7 +11,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import FormControl from '@mui/material/FormControl';
 
-
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 import { texts } from 'src/sections/financial-resume/view';
