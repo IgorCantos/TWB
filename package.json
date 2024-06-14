@@ -30,7 +30,6 @@
     "@mui/icons-material": "^5.15.18",
     "@mui/lab": "^5.0.0-alpha.147",
     "@mui/material": "^5.14.12",
-    "@mui/styles": "^5.15.20",
     "@mui/x-date-pickers": "^7.5.1",
     "apexcharts": "^3.43.0",
     "date-fns": "^2.30.0",
