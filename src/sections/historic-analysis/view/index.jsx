@@ -443,6 +443,117 @@ export default function HistoricAnalysisView() {
 
       <Grid container spacing={3} my={0}>
         <Grid xs={12} md={6} lg={8}>
+          <Card>
+            <CardHeader title="Comparação de recebimentos de Junho x Agosto" />
+            <BarChartCompare
+              subheader="Subtitulo"
+              chart={{
+                labels: [...Array(30)].map((_, index) => index + 1),
+                series: [
+                  {
+                    name: 'Julho',
+                    type: 'area',
+                    fill: 'gradient',
+                    data: [
+                      56, 25, 89, 19, 82, 14, 41, 3, 10, 32, 35, 55, 67, 78, 64, 38, 27, 7, 50, 45,
+                      88, 21, 12, 69, 93, 5, 98, 90, 23, 73,
+                    ],
+                  },
+                  {
+                    name: 'Agosto',
+                    type: 'area',
+                    fill: 'gradient',
+                    data: [
+                      78, 35, 50, 32, 21, 64, 67, 7, 10, 45, 19, 38, 41, 25, 82, 89, 5, 88, 23, 3,
+                      69, 56, 73, 55, 93, 98, 27, 14, 90, 12,
+                    ],
+                  },
+                ],
+              }}
+            />
+          </Card>
+        </Grid>
+
+        <Grid lg={4}>
+          <Grid xs={12}>
+            <BalanceChart
+              subtitle="Recebimentos em Julho"
+              title={applyBrlMask(3221.79)}
+              chart={{
+                type: 'area',
+                height: 146,
+                series: [
+                  { label: 'Jan', value: 400 },
+                  { label: 'Fev', value: 430 },
+                  { label: 'Mar', value: 448 },
+                  { label: 'Abr', value: 470 },
+                  { label: 'Mai', value: 540 },
+                  { label: 'Jun', value: 580 },
+                  { label: 'Jul', value: 690 },
+                  { label: 'Ago', value: 1100 },
+                  { label: 'Set', value: 1200 },
+                  { label: 'Out', value: 1280 },
+                  { label: 'Nov', value: 1330 },
+                  { label: 'Dez', value: 1500 },
+                ],
+              }}
+            />
+          </Grid>
+
+          <Grid xs={12} my={2}>
+            <BalanceChart
+              subtitle="Recebimentos em Agosto"
+              title={applyBrlMask(1783.15)}
+              chart={{
+                type: 'area',
+                height: 146,
+                series: [
+                  { label: 'Jan', value: 400 },
+                  { label: 'Fev', value: 430 },
+                  { label: 'Mar', value: 448 },
+                  { label: 'Abr', value: 470 },
+                  { label: 'Mai', value: 540 },
+                  { label: 'Jun', value: 580 },
+                  { label: 'Jul', value: 690 },
+                  { label: 'Ago', value: 1100 },
+                  { label: 'Set', value: 1200 },
+                  { label: 'Out', value: 1280 },
+                  { label: 'Nov', value: 1330 },
+                  { label: 'Dez', value: 1500 },
+                ],
+              }}
+            />
+          </Grid>
+
+          <Grid xs={12}>
+            <BalanceChart
+              subtitle="Você recebeu R$ 200 a mais."
+              title={`+${applyBrlMask(200)}`}
+              chart={{
+                type: 'area',
+                height: 146,
+                series: [
+                  { label: 'Jan', value: 400 },
+                  { label: 'Fev', value: 430 },
+                  { label: 'Mar', value: 448 },
+                  { label: 'Abr', value: 470 },
+                  { label: 'Mai', value: 540 },
+                  { label: 'Jun', value: 580 },
+                  { label: 'Jul', value: 690 },
+                  { label: 'Ago', value: 1100 },
+                  { label: 'Set', value: 1200 },
+                  { label: 'Out', value: 1280 },
+                  { label: 'Nov', value: 1330 },
+                  { label: 'Dez', value: 1500 },
+                ],
+              }}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={3} my={0}>
+        <Grid xs={12} md={6} lg={8}>
           <Typography variant="h4" mt={3}>
             Principais gastos recorrentes
           </Typography>
@@ -464,6 +575,38 @@ export default function HistoricAnalysisView() {
               { id: '' },
             ]}
           />
+        </Grid>
+      </Grid>
+
+      <Grid container spacing={3} my={0}>
+        <Grid xs={12}>
+          <Card>
+            <CardHeader title="Conta de luz x água" subheader='Colocar uma meta de redução das contas para o usuário alcançar' />
+            <BarChartCompare
+              subheader="Subtitulo"
+              chart={{
+                labels: [...Array(3)].map((_, index) => index + 1),
+                series: [
+                  {
+                    name: 'Julho',
+                    type: 'area',
+                    fill: 'gradient',
+                    data: [
+                      56, 25
+                    ],
+                  },
+                  {
+                    name: 'Agosto',
+                    type: 'area',
+                    fill: 'gradient',
+                    data: [
+                      78, 35,
+                    ],
+                  },
+                ],
+              }}
+            />
+          </Card>
         </Grid>
       </Grid>
     </Container>
