@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Chart, { useChart } from 'src/components/chart';
 import { applyBrlMask } from 'src/utils/format-number';
 
-export default function BarChartCompare({ title, subheader, chart }) {
+export default function BarChartCompare({ chart }) {
   const { labels, series, height, overides, type } = chart;
 
   const chartOptions = useChart({
@@ -34,7 +34,7 @@ export default function BarChartCompare({ title, subheader, chart }) {
   });
 
   return (
-    <Box sx={{ p: 3, pb: 1 }}>
+    <Box>
       <Chart
         series={series}
         options={chartOptions}
@@ -48,6 +48,4 @@ export default function BarChartCompare({ title, subheader, chart }) {
 
 BarChartCompare.propTypes = {
   chart: PropTypes.object,
-  subheader: PropTypes.string,
-  title: PropTypes.string,
 };

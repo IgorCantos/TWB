@@ -10,11 +10,11 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import BalanceChart from 'src/sections/financial-resume/components/balance-chart';
 import DenseTable from 'src/components/tables/basic-table';
 import { banks } from 'src/_mock/banks';
 import Carousel from 'react-material-ui-carousel';
 import LinearProgress from '@mui/material/LinearProgress';
+import BalanceChart from 'src/components/charts/balance-chart';
 
 export const texts = {
   selects: {
@@ -581,7 +581,10 @@ export default function HistoricAnalysisView() {
       <Grid container spacing={3} my={0}>
         <Grid xs={12}>
           <Card>
-            <CardHeader title="Conta de luz x água" subheader='Colocar uma meta de redução das contas para o usuário alcançar' />
+            <CardHeader
+              title="Conta de luz x água"
+              subheader="Colocar uma meta de redução das contas para o usuário alcançar"
+            />
             <BarChartCompare
               subheader="Subtitulo"
               chart={{
@@ -591,17 +594,13 @@ export default function HistoricAnalysisView() {
                     name: 'Julho',
                     type: 'area',
                     fill: 'gradient',
-                    data: [
-                      56, 25
-                    ],
+                    data: [56, 25],
                   },
                   {
                     name: 'Agosto',
                     type: 'area',
                     fill: 'gradient',
-                    data: [
-                      78, 35,
-                    ],
+                    data: [78, 35],
                   },
                 ],
               }}
