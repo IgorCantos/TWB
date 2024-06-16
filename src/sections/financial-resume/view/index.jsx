@@ -17,10 +17,10 @@ import CreateAdSenseAd from 'src/components/ads/ad-sense';
 import BuyPremiumAction from 'src/components/premium/buy-premium';
 
 import RadialChart from 'src/components/charts/radial-chart';
-import PieChart from '../../../components/charts/pie-chart';
 import BarChartCompare from '../../../components/charts/bar-chart-compare';
-import ChartIncomeVsOutcome from '../components/chart-income-outcome';
-import ChartOutcomeCategories from '../components/outcome-categories';
+import IncomeVsExpensesChart from '../components/income-vs-expenses-chart';
+import ExpensesByCategoryChart from '../components/expenses-by-category-chart';
+import ExpensesByPaymentMethodChart from '../components/expenses-by-payment-method-chart';
 
 export const texts = {
   selects: {
@@ -89,29 +89,17 @@ export default function FinancialResumeView() {
       {/* Renda x Despesa */}
       <Grid container spacing={3} my={0}>
         <Grid xs={12} md={8}>
-          <ChartIncomeVsOutcome />
+          <IncomeVsExpensesChart />
         </Grid>
 
         <Grid xs={12} md={4}>
-          <ChartOutcomeCategories />
+          <ExpensesByCategoryChart />
         </Grid>
       </Grid>
 
       <Grid container spacing={3} my={0}>
-        <Grid xs={12} md={6}>
-          <PieChart
-            title={texts.expenses.byPaymentMethod}
-            subheader="Subtitulo"
-            chart={{
-              type: 'donut',
-              height: 300,
-              series: [
-                { label: 'Crédito', value: 4344 },
-                { label: 'Débito', value: 800 },
-                { label: 'Pix', value: 1443 },
-              ],
-            }}
-          />
+        <Grid xs={12} md={4}>
+          <ExpensesByPaymentMethodChart />
         </Grid>
       </Grid>
 
@@ -236,7 +224,6 @@ export default function FinancialResumeView() {
               { id: 'type', label: 'Tipo', align: 'left' },
               { id: 'amount', label: 'Valor (R$)' },
               { id: 'totalAccountAmount', label: 'Saldo total (R$)' },
-              { id: '' },
             ]}
           />
         </Grid>

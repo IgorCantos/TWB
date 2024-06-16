@@ -41,7 +41,7 @@ const fakeData = {
   ],
 };
 
-export default function ChartIncomeVsOutcome() {
+export default function IncomeVsExpensesChart() {
   const [chartType, setChartType] = useState(CHART_TYPES.area);
   const [data, setData] = useState({
     labels: [],

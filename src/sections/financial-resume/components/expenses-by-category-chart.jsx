@@ -23,7 +23,7 @@ const fakeData = {
   ],
 };
 
-export default function ChartOutcomeCategories() {
+export default function ExpensesByCategoryChart() {
   const [chartType, setChartType] = useState(CHART_TYPES.pie);
   const [data, setData] = useState({
     series: [],
