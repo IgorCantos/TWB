@@ -111,7 +111,7 @@ export function overrides(theme) {
       styleOverrides: {
         head: {
           color: theme.palette.text.secondary,
-          backgroundColor: theme.palette.background.neutral,
+          backgroundColor: theme.palette.background.teste,
         },
       },
     },

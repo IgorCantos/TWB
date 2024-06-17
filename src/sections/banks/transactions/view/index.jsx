@@ -106,6 +106,7 @@ export default function TransactionsView() {
       .filter((data) => data.bankName === 'Santander')
       .reduce((a, b) => a + Number(b.totalAccountAmount), 0)
   );
+
   const totalItau = applyBrlMask(
     dataFiltered
       .filter((data) => data.bankName === 'Itaú')

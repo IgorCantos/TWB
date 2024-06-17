@@ -14,6 +14,7 @@ export const grey = {
   600: '#637381',
   700: '#454F5B',
   800: '#212B36',
+  850: '#2b3541',
   900: '#161C24',
 };
 
@@ -140,6 +141,7 @@ export function palette(mode) {
           // },
           background: {
             default: '#121212', // Cor de fundo principal
+            teste: grey[850], // Cor de fundo principal
             paper: '#212b36', // Altere esta cor para a cor de fundo desejada para o card
           },
         }),

@@ -4,7 +4,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import HeatmapChart from 'src/components/charts/heatmap-chart';
 import RangeBarChart from 'src/components/charts/range-bar-chart';
 
-import BarChartCompare from 'src/components/charts/bar-chart-compare';
+import BarChartCompare from 'src/components/charts/bar-chart';
 import { applyBrlMask } from 'src/utils/format-number';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';

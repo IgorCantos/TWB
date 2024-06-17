@@ -8,7 +8,7 @@ import Select from '@mui/material/Select';
 import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-import BarChartCompare from 'src/components/charts/bar-chart-compare';
+import BarChartCompare from 'src/components/charts/bar-chart';
 import { CHART_TYPES } from 'src/enums/chart-enums';
 import { faker } from '@faker-js/faker';
 import { applyBrlMask } from 'src/utils/format-number';

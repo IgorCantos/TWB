@@ -1,23 +1,18 @@
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
-
 import FormControl from '@mui/material/FormControl';
-
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { banks } from 'src/_mock/banks';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 
-import DenseTable from 'src/components/tables/basic-table';
 import CreateAdSenseAd from 'src/components/ads/ad-sense';
 import BuyPremiumAction from 'src/components/premium/buy-premium';
-
 import RadialChart from 'src/components/charts/radial-chart';
-import BarChartCompare from '../../../components/charts/bar-chart-compare';
+import LastTransactionsTable from '../components/last-transactions-table';
 import IncomeVsExpensesChart from '../components/income-vs-expenses-chart';
 import ExpensesByCategoryChart from '../components/expenses-by-category-chart';
 import ExpensesByPaymentMethodChart from '../components/expenses-by-payment-method-chart';
@@ -101,71 +96,9 @@ export default function FinancialResumeView() {
         <Grid xs={12} md={4}>
           <ExpensesByPaymentMethodChart />
         </Grid>
-      </Grid>
 
-      <Grid container spacing={3} my={0}>
-        <Grid xs={12} md={6} lg={8}>
-          <Typography variant="h4" mt={3}>
-            Meus investimentos
-          </Typography>
-        </Grid>
-      </Grid>
-
-      {/* Investimentos */}
-      <Grid container spacing={3} my={0}>
-        <Grid xs={12} md={6} lg={12}>
-          <Card>
-            <BarChartCompare
-              chart={{
-                labels: [
-                  'Jan',
-                  'Fev',
-                  'Mar',
-                  'Abr',
-                  'Mai',
-                  'Jun',
-                  'Jul',
-                  'Ago',
-                  'Set',
-                  'Out',
-                  'Nov',
-                  'Dez',
-                ],
-                series: [
-                  {
-                    name: 'Ações',
-                    type: 'bar',
-                    fill: 'gradient',
-                    data: [4200, 1300, 4900, 3500, 2100, 3700, 2600, 4500, 5000, 2300, 1800, 3900],
-                  },
-                  {
-                    name: 'Fundos imobiliarios',
-                    type: 'bar',
-                    fill: 'gradient',
-                    data: [3300, 1700, 4100, 2800, 3900, 2200, 3100, 2700, 3000, 1900, 2100, 4400],
-                  },
-                  {
-                    name: 'Renda fixa',
-                    type: 'bar',
-                    fill: 'gradient',
-                    data: [3400, 2900, 3800, 2200, 3100, 2700, 3200, 2500, 2000, 3600, 2400, 3000],
-                  },
-                  {
-                    name: 'Criptomoedas',
-                    type: 'bar',
-                    fill: 'gradient',
-                    data: [1352, 3821, 3424, 2121, 3374, 2651, 3128, 2271, 1970, 3531, 2229, 3205],
-                  },
-                  {
-                    name: 'Outros',
-                    type: 'bar',
-                    fill: 'gradient',
-                    data: [1500, 1900, 2900, 1000, 3000, 1200, 2700, 1700, 2200, 1400, 3100, 2400],
-                  },
-                ],
-              }}
-            />
-          </Card>
+        <Grid xs={12} md={8}>
+          <LastTransactionsTable />
         </Grid>
       </Grid>
 
@@ -200,31 +133,6 @@ export default function FinancialResumeView() {
               labels: ['Lançar APP', 'Vender pro Nubank', 'Ficar rico'],
               series: [97, 34, 78],
             }}
-          />
-        </Grid>
-      </Grid>
-
-      <Grid container spacing={3} my={0}>
-        <Grid xs={12} md={6} lg={8}>
-          <Typography variant="h4" mt={3}>
-            Minhas últimas transações
-          </Typography>
-        </Grid>
-      </Grid>
-
-      <Grid container spacing={3} my={0}>
-        <Grid xs={12}>
-          <DenseTable
-            rows={banks.slice(0, 5)}
-            headLabel={[
-              { id: 'bankName', label: 'Banco' },
-              { id: 'transactionDate', label: 'Data da transação' },
-              { id: 'cardNumber', label: 'Final do cartão' },
-              { id: 'category', label: 'Categoria' },
-              { id: 'type', label: 'Tipo', align: 'left' },
-              { id: 'amount', label: 'Valor (R$)' },
-              { id: 'totalAccountAmount', label: 'Saldo total (R$)' },
-            ]}
           />
         </Grid>
       </Grid>
