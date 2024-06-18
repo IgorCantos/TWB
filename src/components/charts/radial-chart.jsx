@@ -2,87 +2,73 @@ import PropTypes from 'prop-types';
 
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import { styled, useTheme } from '@mui/material/styles';
-
-import { applyBrlMask } from 'src/utils/format-number';
-
 import Chart, { useChart } from 'src/components/chart';
-
-const CHART_HEIGHT = 422;
-const LEGEND_HEIGHT = 72;
-const StyledChart = styled(Chart)(({ theme }) => ({
-  height: CHART_HEIGHT,
-  '& .apexcharts-canvas, .apexcharts-inner, svg, foreignObject': {
-    height: `100% !important`,
-  },
-  '& .apexcharts-legend': {
-    height: LEGEND_HEIGHT,
-    borderTop: `dashed 1px ${theme.palette.divider}`,
-    top: `calc(${CHART_HEIGHT - LEGEND_HEIGHT}px) !important`,
-  },
-}));
+import { useTheme } from '@mui/material/styles';
 
 export default function RadialChart({ title, subheader, chart }) {
   const theme = useTheme();
-
-  const { series, labels, height, type } = chart;
+  const { series: serie, height, type } = chart;
 
   const chartOptions = useChart({
     chart: {
+      type: 'bar',
+      stacked: false,
       sparkline: {
         enabled: true,
       },
     },
-    labels,
+    plotOptions: {
+      bar: {
+        horizontal: true,
+        barHeight: '100%',
+      },
+    },
     stroke: {
-      colors: [theme.palette.background.paper],
+      width: 0,
     },
-    legend: {
+    grid: {
+      show: true,
+      borderColor: false,
+      row: {
+        colors: [theme.palette.grey[600]],
+        opacity: 0.2,
+      },
+    },
+    title: {
+      floating: false,
+      text: serie.name,
+    },
+    subtitle: {
       floating: true,
-      position: 'bottom',
-      horizontalAlign: 'center',
-    },
-    dataLabels: {
-      enabled: true,
-      dropShadow: {
-        enabled: false,
+      align: 'right',
+      offsetY: 0,
+      text: `${serie.data}%`,
+      style: {
+        fontSize: '16px',
       },
     },
     tooltip: {
-      fillSeriesColor: false,
+      enabled: true,
       y: {
-        formatter: (value) => `R$ ${applyBrlMask(value)}`,
-        title: {
-          formatter: (seriesName) => `${seriesName}`,
-        },
+        show: true,
+        format: 'dd MMM',
+        formatter: (a) => `${a}%`,
       },
     },
-    plotOptions: {
-      radialBar: {
-        dataLabels: {
-          name: {
-            fontSize: '16px',
-          },
-          value: {
-            fontSize: '18px',
-          },
-          total: {
-            show: false,
-            label: 'Total',
-            formatter: (w) => w,
-          },
-        },
-      },
+    xaxis: {
+      categories: [serie.name],
+    },
+    yaxis: {
+      max: 100,
     },
   });
 
   return (
     <Card>
       <CardHeader title={title} subheader={subheader} />
-
-      <StyledChart
+      <Chart
         type={type}
-        series={series}
+        series={[serie]}
         options={chartOptions}
         width="100%"
         height={height || 280}

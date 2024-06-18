@@ -11,11 +11,11 @@ import Divider from '@mui/material/Divider';
 
 import CreateAdSenseAd from 'src/components/ads/ad-sense';
 import BuyPremiumAction from 'src/components/premium/buy-premium';
-import RadialChart from 'src/components/charts/radial-chart';
 import LastTransactionsTable from '../components/last-transactions-table';
 import IncomeVsExpensesChart from '../components/income-vs-expenses-chart';
 import ExpensesByCategoryChart from '../components/expenses-by-category-chart';
 import ExpensesByPaymentMethodChart from '../components/expenses-by-payment-method-chart';
+import FinancialGoalsChart from '../components/financial-goals-chart';
 
 export const texts = {
   selects: {
@@ -103,37 +103,11 @@ export default function FinancialResumeView() {
       </Grid>
 
       <Grid container spacing={3} my={0}>
-        <Grid xs={12} md={6} lg={8}>
-          <Typography variant="h4" mt={3}>
-            Minhas metas financeiras
-          </Typography>
+        <Grid xs={12} md={6}>
+          <FinancialGoalsChart />
         </Grid>
-      </Grid>
-
-      {/* Minhas metas */}
-      <Grid container spacing={3} my={0}>
-        <Grid xs={12} md={4}>
-          <RadialChart
-            title=""
-            chart={{
-              type: 'radialBar',
-              height: 340,
-              labels: ['Lançar APP', 'Vender pro Nubank', 'Ficar rico'],
-              series: [97, 34, 78],
-            }}
-          />
-        </Grid>
-
-        <Grid xs={12} md={4}>
-          <RadialChart
-            title=""
-            chart={{
-              type: 'radialBar',
-              height: 340,
-              labels: ['Lançar APP', 'Vender pro Nubank', 'Ficar rico'],
-              series: [97, 34, 78],
-            }}
-          />
+        <Grid xs={12} md={6}>
+          <FinancialGoalsChart />
         </Grid>
       </Grid>
 
@@ -177,7 +151,8 @@ export default function FinancialResumeView() {
           >
             <Stack direction="column" justifyContent="center" alignItems="center">
               <Typography variant="h5" fontWeight="bold">
-                Conta de água
+                Conta de água. Hey, igor, sua contá irá vencer no dia xx, não se esqueça de pagar!
+                (whatsapp, notificação aqui)
               </Typography>
               <Typography variant="subtitle" sx={{ color: 'text.disabled' }}>
                 R$ 120,00
