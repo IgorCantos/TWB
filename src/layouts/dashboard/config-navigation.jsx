@@ -12,11 +12,6 @@ const navConfig = [
     path: '/',
     icon: icon('ic_analytics'),
   },
-  // {
-  //   title: 'Transações',
-  //   path: '/transacoes',
-  //   icon: icon('ic_user'),
-  // },
   {
     title: 'Meus bancos',
     icon: icon('ic_cart'),

@@ -22,7 +22,7 @@ import navConfig from './config-navigation';
 
 // ----------------------------------------------------------------------
 
-export default function Nav({ openNav, onCloseNav }) {
+export default function NavMobile({ openNav, onCloseNav }) {
   const pathname = usePathname();
 
   // const upLg = useResponsive('up', 'lg');
@@ -132,7 +132,7 @@ export default function Nav({ openNav, onCloseNav }) {
   );
 }
 
-Nav.propTypes = {
+NavMobile.propTypes = {
   openNav: PropTypes.bool,
   onCloseNav: PropTypes.func,
 };

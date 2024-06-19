@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 
-import Nav from './nav';
+import NavMobile from './nav-mobile';
 import Main from './main';
 import Header from './header';
+import NavDesktop from './nav-desktop';
 
 // ----------------------------------------------------------------------
 
@@ -14,7 +15,9 @@ export default function DashboardLayout({ children }) {
 
   return (
     <>
-      <Header onOpenNav={() => setOpenNav(true)} />
+      <Header onOpenNav={() => setOpenNav(true)}>
+        <NavDesktop />
+      </Header>
 
       <Box
         sx={{
@@ -23,7 +26,7 @@ export default function DashboardLayout({ children }) {
           flexDirection: { xs: 'column', lg: 'row' },
         }}
       >
-        <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} />
+        <NavMobile openNav={openNav} onCloseNav={() => setOpenNav(false)} />
 
         <Main>{children}</Main>
       </Box>
