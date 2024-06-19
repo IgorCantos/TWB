@@ -105,7 +105,7 @@ export default function InvoicesView() {
   };
 
   return (
-    <Container>
+    <Container maxWidth="xl">
       <Stack direction="row" alignItems="center" justifyContent="space-between" my={3}>
         <Typography variant="h4">Minhas faturas</Typography>
       </Stack>
