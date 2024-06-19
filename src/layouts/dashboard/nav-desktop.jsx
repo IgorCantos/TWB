@@ -4,7 +4,8 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { alpha } from '@mui/material/styles';
-import Collapse from '@mui/material/Collapse';
+import Popover from '@mui/material/Popover';
+import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
@@ -73,9 +74,11 @@ function NavItem({ item }) {
         }),
       }}
     >
-      <Box component="span" sx={{ width: 24, height: 24, m: 1 }}>
-        {item.icon}
-      </Box>
+      {item.icon && (
+        <Box component="span" sx={{ width: 24, height: 24, m: 1 }}>
+          {item.icon}
+        </Box>
+      )}
 
       <Box component="span">{item.title}</Box>
     </ListItemButton>
@@ -87,16 +90,16 @@ NavItem.propTypes = {
 };
 
 function CollapsibleNavItem({ item }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(null);
 
-  const handleToggle = () => {
-    setOpen(!open);
-  };
+  const handleOpen = (event) => setOpen(event.currentTarget);
+
+  const handleClose = () => setOpen(null);
 
   return (
     <>
       <ListItemButton
-        onClick={handleToggle}
+        onClick={handleOpen}
         sx={{
           minHeight: 44,
           borderRadius: 0.75,
@@ -121,13 +124,30 @@ function CollapsibleNavItem({ item }) {
       </ListItemButton>
 
       {open && (
-        <Collapse in={open}>
-          <Stack spacing={0.5} sx={{ pl: 3 }}>
+        <Popover
+          open={!!open}
+          anchorEl={open}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+          <Box>
             {item.children.map((child) => (
-              <NavItem key={child.title} item={child} />
+              <>
+                <NavItem key={child.title} item={child} />
+                <Divider sx={{ borderStyle: 'dashed' }} />
+              </>
             ))}
-          </Stack>
-        </Collapse>
+          </Box>
+        </Popover>
+
+        // <Collapse in={open}>
+        //   <Stack spacing={0.5} sx={{ pl: 3 }}>
+        //     {item.children.map((child) => (
+        //       <NavItem key={child.title} item={child} />
+        //     ))}
+        //   </Stack>
+        // </Collapse>
       )}
     </>
   );
