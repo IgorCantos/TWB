@@ -35,6 +35,11 @@ const navConfig = [
     path: '/analises',
     icon: icon('ic_analytics'),
   },
+  {
+    title: 'Metas financeiras',
+    path: null,
+    icon: icon('ic_analytics'),
+  },
   // {
   //   title: 'Projeções e análises',
   //   path: '/404',

@@ -20,7 +20,7 @@ import navConfig from './config-navigation';
 
 export default function NavDesktop({ openNav, onCloseNav }) {
   return (
-    <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', maxWidth: '600px' }}>
+    <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', maxWidth: '780px' }}>
       <Scrollbar>
         <Stack
           component="nav"
