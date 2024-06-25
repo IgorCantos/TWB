@@ -37,7 +37,7 @@ const navConfig = [
   },
   {
     title: 'Metas financeiras',
-    path: null,
+    path: '/metas',
     icon: icon('ic_analytics'),
   },
   // {

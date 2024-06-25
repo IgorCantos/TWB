@@ -5,7 +5,7 @@ import CardHeader from '@mui/material/CardHeader';
 import Chart, { useChart } from 'src/components/chart';
 import { useTheme } from '@mui/material/styles';
 
-export default function RadialChart({ title, subheader, chart }) {
+export default function ProgressChart({ title, subheader, chart }) {
   const theme = useTheme();
   const { series: serie, height, type } = chart;
 
@@ -77,7 +77,7 @@ export default function RadialChart({ title, subheader, chart }) {
   );
 }
 
-RadialChart.propTypes = {
+ProgressChart.propTypes = {
   chart: PropTypes.object,
   subheader: PropTypes.string,
   title: PropTypes.string,

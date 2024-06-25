@@ -59,7 +59,7 @@ export default function NotFoundView() {
             sx={{
               mx: 'auto',
               height: 260,
-              my: { xs: 5, sm: 10 },
+              my: { sm: 3 },
             }}
           />
 

@@ -2,7 +2,7 @@ import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import CardHeader from '@mui/material/CardHeader';
 import Button from '@mui/material/Button';
-import RadialChart from 'src/components/charts/radial-chart';
+import ProgressChart from 'src/components/charts/radial-chart';
 
 export default function FinancialGoalsChart() {
   return (
@@ -25,7 +25,7 @@ export default function FinancialGoalsChart() {
           data: [24],
         },
       ].map((serie) => (
-        <RadialChart
+        <ProgressChart
           key={serie.name}
           chart={{
             type: 'bar',
