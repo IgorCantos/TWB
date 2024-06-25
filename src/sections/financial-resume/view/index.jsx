@@ -6,21 +6,15 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import CardActions from '@mui/material/CardActions';
-import { applyBrlMask } from 'src/utils/format-number';
 
-import RangeBarChart from 'src/components/charts/range-bar-chart';
 import CreateAdSenseAd from 'src/components/ads/ad-sense';
 import BuyPremiumAction from 'src/components/premium/buy-premium';
 import IncomeVsExpensesChart from '../components/income-vs-expenses-chart';
 import ExpensesByCategoryChart from '../components/expenses-by-category-chart';
 import ExpensesByPaymentMethodChart from '../components/expenses-by-payment-method-chart';
 import FinancialGoalsChart from '../components/financial-goals-chart';
+import TopSpendingDays from '../components/income-vs-expenses-chart copy';
 
 export const texts = {
   selects: {
@@ -101,53 +95,7 @@ export default function FinancialResumeView() {
 
       <Grid container spacing={3} my={0}>
         <Grid xs={12} lg={6}>
-          <Card sx={{ px: 3, py: 2 }}>
-            <CardHeader title="Top 3 dias que mais gastei no mês" sx={{ mb: 5 }} />
-
-            <Card
-              variant="outlined"
-              sx={{
-                p: 1.5,
-                display: 'flex',
-                justifyContent: 'space-evenly',
-                alignItems: 'center',
-              }}
-            >
-              {[
-                {
-                  day: 2,
-                  total: 250,
-                },
-                {
-                  day: 8,
-                  total: 280,
-                },
-
-                {
-                  day: 17,
-                  total: 321,
-                },
-              ].map((data) => (
-                <Box textAlign="center">
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.disabled',
-                    }}
-                  >
-                    Dia {data.day}
-                  </Typography>
-                  <Typography variant="h6"> {applyBrlMask(data.total)}</Typography>
-                </Box>
-              ))}
-            </Card>
-
-            <CardActions>
-              <Box display="flex" alignItems="center" justifyContent="center" width="100%" mt={2}>
-                <Button variant="text">Ver todas</Button>
-              </Box>
-            </CardActions>
-          </Card>
+          <TopSpendingDays />
         </Grid>
 
         <Grid xs={12} md={6}>
@@ -155,10 +103,10 @@ export default function FinancialResumeView() {
         </Grid>
       </Grid>
 
-      <Grid container spacing={3} my={0}>
+      {/* <Grid container spacing={3} my={0}>
         <Grid xs={12}>
           <RangeBarChart
-            title="Próximos parcelamentos a serem pagos"
+            title="Próximas compras parceladas a pagar"
             chart={{
               type: 'rangeBar',
               height: 300,
@@ -207,9 +155,9 @@ export default function FinancialResumeView() {
             }}
           />
         </Grid>
-      </Grid>
+      </Grid> */}
 
-      <Grid container spacing={3} my={0}>
+      {/* <Grid container spacing={3} my={0}>
         <Grid xs={12}>
           <Typography variant="h4" mt={3}>
             Próximos pagamentos fixos
@@ -284,7 +232,7 @@ export default function FinancialResumeView() {
             </Stack>
           </Card>
         </Grid>
-      </Grid>
+      </Grid> */}
     </Container>
   );
 }

@@ -8,7 +8,6 @@ import CardHeader from '@mui/material/CardHeader';
 import Box from '@mui/material/Box';
 import { faker } from '@faker-js/faker';
 import IncomeByMonth from '../components/incomes-by-month';
-import OutcomesByMonth from '../components/outcomes-by-month';
 
 export const texts = {
   selects: {
@@ -137,11 +136,7 @@ export default function HistoricAnalysisView() {
       </Grid>
 
       <Grid container spacing={3} my={0}>
-        <Grid xs={12} lg={6}>
-          <OutcomesByMonth />
-        </Grid>
-
-        <Grid xs={12} lg={6}>
+        <Grid xs={12}>
           <IncomeByMonth />
         </Grid>
       </Grid>

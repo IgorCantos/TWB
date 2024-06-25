@@ -142,6 +142,7 @@ export default function IncomeByMonth() {
 
       <BarChartCompare
         chart={{
+          height: 250,
           type: chartType,
           labels: data.labels,
           series: data.series,
